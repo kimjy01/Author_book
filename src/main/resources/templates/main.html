@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" type="text/css" href="../static/css/main.css">
+    <title>Author Book</title>
+</head>
+<body>
+    <div class="container">
+        
+        <div id="nav">
+
+        </div>
+
+    </div>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+    <script>
+        function onClick( e ) {  
+            [ ...document.querySelectorAll('.nav-bar__item') ].forEach( item => item.classList.remove('active'));
+            e.classList.add('active');
+        }
+    </script>
+    <script>
+        $(document).ready( function() {
+            $("#nav").load("./nav.html"); 
+        });
+    </script>
+</body>
+</html>
