@@ -14,25 +14,30 @@
             <form class="login_form" action="" method="post">
                 <div class="login_wrap">
                     <p class="login_info">이메일(아이디)</p>
-                    <input class="login_input" type="email" required>
+                    <input class="login_input" type="email" name="email" placeholder="이메일을 입력해주세요." required>
                 </div>
                 <div class="login_wrap">
                     <p class="login_info">비밀번호</p>
-                    <input class="login_input" type="password" required>
+                    <input class="login_input" type="password" name="password" placeholder="비밀번호를 입력해주세요." required>
                 </div>
-                <button type="submit" class="btn_login"></button>
+                <button type="submit" class="btn_login"> 로그인 </button>
             </form>
             <a href="#" class="login_link">비밀번호 찾기</a>
         </div>
-        <div>
-            <div class="bar"></div>
-            <p> 소셜 계정으로 로그인 </p>
-            <div class="bar"></div>
-        </div>
-        <button class="social_login"></button>
-        <button class="social_login"></button>
 
         <p>계정이 없으신가요? <a class="login_link" href="#">회원가입하기</a></p>
+
+        <div class="register_wrap">
+            <div class="social_info"> 소셜 계정으로 로그인 </div>
+        </div>
+        <button class="social_login kakao">
+            <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAEgAAABICAYAAABV7bNHAAAACXBIWXMAACE4AAAhOAFFljFgAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAI6SURBVHgB7ZvdcdNAFIU/fgpIB2wHuAP0yGM6wFQAVGDRAR04dEAHciogVCB3kDySJ2V3LE88SZRcZfZf95s54wevbfno6lytVgJFURRFURRFeYI3pOVslBl1yn58vbK6IRGxDWqsVlafxlcj/JwzyBl1abUbVQ2N1S+ra6vBk9x3bcfvLpa1VYc/U6bUj79VDA2HjR4iK3ujDHEq5iVtkWdbNM7xmzE+qumcTNiQjzEPtSExOZuT3KQSzElm0jfKMeeoL0TCUJ45TtdE6m49MBSqjsBsgKFwrQmEoezqOapnBm9njG3I8Az1FRgCVZFzvoQKkajDMytgqExnCJAeYg31IZqrLdmglWSQ1KAP1IeRDJIaZKiPj5JBUoNEgVYjc86DFonUoGTrUgER/Sc16AWkBl1SH/8kg6QGXVEfOzyy2KnGHDpgqEQdQua0+Zpy6DcBcCWZ0+Lga9Uzg3czxv63urX6TNn8IHDT6SirYk61JQKGMg+1noiT7jXlGdQQmZZyzPlOIlryN6clMS15GuNyck0mNOS1LOS2RXTNOSbG6oL05rg7arO+AuoCMYUxHQE61Xv8E3vv7ax+UtDN5W5Phq6WnkNzCJ4zvh9FOE5ofeIuje45zJ/cVcA/3D/HERzfh9jcPbq3+jrx3g335lSD6yDVdJsQSPLH5UfDAnHVIGnFi12lbZg2xgV3sgljLkzlj+s+BoW/PB3ECo/zZ7FBPMXpwuIFCw7i52gp7NFIRVEURVEUZZo7UUHY7akaphQAAAAASUVORK5CYII=">
+            <span>카카오로 계속하기</span>
+        </button>
+        <button class="social_login google">
+            <img src="data:image/png;base64,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">
+            <span>구글로 계속하기</span>
+        </button>
     </div>
 </body>
 </html>
