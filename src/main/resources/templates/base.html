@@ -8,23 +8,16 @@
 </head>
 <body>
     <div class="container">
-        
-        <div id="nav">
+
+        <div class="contents_wrap">
 
         </div>
+        
+        <div class="nav">
 
+        </div>
     </div>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
-    <script>
-        function onClick( e ) {  
-            [ ...document.querySelectorAll('.nav-bar__item') ].forEach( item => item.classList.remove('active'));
-            e.classList.add('active');
-        }
-    </script>
-    <script>
-        $(document).ready( function() {
-            $("#nav").load("./nav.html"); 
-        });
-    </script>
+    <script src="../static/js/base.js"></script>
 </body>
 </html>

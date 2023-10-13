@@ -1,0 +1,150 @@
+*{
+    list-style: none;
+}
+
+.profile {
+    width : 100%;
+    margin-top: 3%;
+    display: flex;
+    align-items: center;
+}
+
+.profile_image {
+    width : 40px;
+    height: 40px;
+    border-radius: 50%;
+    border: 1px solid black;
+    margin: 0 3% 0 2%;
+}
+
+.challenge_wrap{
+    border-radius: 4px;
+    display: flex;
+    flex-direction: column;
+    width: 96%;
+    height : 30vh;
+    border: 1px solid #98C5AB;
+}
+
+.level_wrap {
+    display: flex;
+    flex-direction: row;
+    margin-top: 3%;
+    height: 70%;
+}
+
+.level_info {
+    width: 40%;
+    padding-left: 2%;
+}
+
+.level {
+    margin-bottom: 8px;
+}
+
+.level_total {
+    margin-top: 8px;
+}
+
+.image_wrap {
+    width: 60%;
+    height: 100%;
+}
+
+.level_image {
+    width: 100%;
+    height:100%;
+}
+
+.list_wrap {
+    display: flex;
+    flex-direction: row;
+    width: 100%;
+    height:30%;
+    align-items: center;
+    justify-content: center;
+}
+
+.challenge_list_wrap {
+    display: flex;
+    flex-direction: row;
+    width: 100%;
+    padding: 0 2%;
+}
+
+.challenge_list {
+    display: block;
+    border: 1px solid #98C5AB;
+    border-radius: 4%;
+    width: 50%;
+    height: 30px;
+    margin: 0 1%;
+    padding-top: 8px;
+    text-align: center;
+    font-size: 14px;
+}
+
+.ads_wrap {
+    width: 96%;
+    height: 100px;
+    margin-top: 3%;
+    border-radius: 4%;
+    border: 1px solid #98C5AB;
+    position: relative;
+}
+
+.ads {
+    display: flex;
+    margin: 0;
+    padding: 0;
+    width: 1470px;
+    height: 100%;
+    transition: transform 0.5s ease-in-out;
+}
+
+.ads_list {
+    margin-top: 0;
+    margin-right: 10px;
+    flex: 0 0 480px;
+}
+
+.ads_image {
+    width: 100%;
+    height: 100%;
+    border-radius: 4%;
+    display: block;
+}
+
+.ads_button {
+    width: 100%;
+    height: 30px;
+    position: absolute;
+    z-index: 100;
+    border: none;
+    top: 50%;
+    transform: translate(0, -50%)
+}
+
+.prev-btn{
+    display: block;
+    border: none;
+    background-color: transparent;
+    border-radius: 7px;
+    float: left;
+}
+
+.next-btn{
+    background-color: transparent;
+    border: none;
+    border-radius: 7px;
+    display: block;
+    float: right;
+}
+
+.next-btn > img, .prev-btn > img {
+    width: 22px;
+    height: 22px;
+    opacity: 0.6;
+    cursor: pointer; 
+}
+
