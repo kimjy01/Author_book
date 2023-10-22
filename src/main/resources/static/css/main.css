@@ -14,12 +14,13 @@ html, body {
 .container {
     font-family: 'GmarketSansMedium';
     width: 500px; /* 전체 width 조절 */
-    height: 100%;
+    height: 100vh;
     margin: 0 auto; /* 가운데로 오게 하기 */
     position: relative;
     display: flex;
     flex-direction: column;
     align-items: center;
+    padding-bottom: 20px;
 }
 
 .nav {
@@ -34,9 +35,5 @@ html, body {
     flex-direction: column;
     width : 100%;
     align-items: center;
-}
-
-
-.contents_wrap > div {
-    border: 1px solid rgba(0, 0, 0, 0.22);
+    height: 100%;
 }
