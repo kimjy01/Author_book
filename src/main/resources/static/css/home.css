@@ -87,10 +87,38 @@
 
 .book_wrap {
     margin-top: 3%;
-    width: 96%;
+    width: 90%;
     height: 15%;
     border: 1px solid #98C5AB;
     border-radius: 4%;
+    display: flex;
+    flex-direction: row;
+    padding: 2% 3%;
+    justify-content: space-between
+}
+
+.book_item_wrap {
+    display: flex;
+    height: 100%;
+    align-items: flex-end;
+}
+
+.book_item {
+    border: 1px solid;
+    width: 30px;
+    height: 50%;
+    background: #c3e4d0;
+}
+
+.book_btn {
+    height: 100%;
+    display: flex;
+    align-items: center;
+}
+
+.book_btn > button {
+    width: 30px;
+    height: 30px;
 }
 
 .map_wrap {

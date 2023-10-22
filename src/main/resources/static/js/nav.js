@@ -26,12 +26,12 @@ $('.book').click(function(){
 
 $('.home').click(function(){
     $.ajax({
-        url : '../templates/main.html',
+        url : '../templates/home.html',
         dataType: 'html',
         method: 'get',
         data: {}
     }).done(function(data){
-        $('.col-8').html(data);
+        $('.contents_wrap').html(data);
     });
 });
 
@@ -48,11 +48,11 @@ $('.chat').click(function(){
 
 $('.mypage').click(function(){
     $.ajax({
-        url : '',
+        url : '../templates/mypage.html',
         dataType: 'html',
         method: 'get',
         data: {}
     }).done(function(data){
-        $('.col-8').html(data);
+        $('.contents_wrap').html(data);
     });
 });
