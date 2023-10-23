@@ -55,6 +55,47 @@
     margin-top: 3px;
 }
 
+.profile_info_wrap {
+    margin: 3% 0;
+    display: flex;
+    flex-direction: row;
+    width: 90%;
+    height: 80px;
+    justify-content: space-evenly;
+    border-radius: 20px;
+    background-color: rgb(224, 224, 224);
+    text-align: center;
+}
+
+.profile_info_wrap > div {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+}
+
 hr {
+    margin: 10px 0;
+}
+
+p {
+    margin: 0;
+}
+
+.separate {
     width: 96%;
+}
+
+.btn_logout {
+    width: 60%;
+    height: 45px;
+    border-radius: 10px;
+    background: #ffffff;
+    font-family: 'GmarketSansMedium';
+    color: #000000;
+    border: 1px solid #98C5AB;
+    margin-top: 5%;
+}
+
+.btn_logout:hover {
+    background-color: rgba(116, 252, 175, 0.8);
 }
