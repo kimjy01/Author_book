@@ -2,6 +2,11 @@
     list-style: none;
 }
 
+a {
+    text-decoration: none;
+    color: black;
+}
+
 .profile {
     width : 100%;
     margin-top: 3%;
@@ -108,6 +113,16 @@
     width: 30px;
     height: 50%;
     background: #c3e4d0;
+    display: flex;
+    justify-content: space-around;
+    margin-right: 2px;
+}
+
+.book_title {
+    writing-mode: vertical-lr;
+    text-orientation: upright;
+    font-size: 12px;
+    margin: 0;
 }
 
 .book_btn {

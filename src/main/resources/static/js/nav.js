@@ -37,12 +37,12 @@ $('.home').click(function(){
 
 $('.chat').click(function(){
     $.ajax({
-        url : '10.ajax1-update.html',
+        url : '../templates/chat_list.html',
         dataType: 'html',
         method: 'get',
         data: {}
     }).done(function(data){
-        $('.col-8').html(data);
+        $('.contents_wrap').html(data);
     });
 });
 

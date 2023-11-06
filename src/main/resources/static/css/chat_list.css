@@ -1,0 +1,59 @@
+.title  {
+    width: 90%;
+}
+
+.title > h2 {
+    margin-bottom: 0;
+}
+
+.chat_wrap {
+    border-radius: 4px;
+    display: flex;
+    flex-direction: column;
+    width: 96%;
+    border: 1px solid #98C5AB;
+    margin-top : 2%;
+}
+
+.author {
+    list-style: none;
+}
+
+ul {
+    padding: 0 5%;
+}
+
+li {
+    margin-bottom: 5%;
+}
+
+.profile {
+    width : 100%;
+    margin-top: 3%;
+    margin-bottom: 5%;
+    display: flex;
+    align-items: center;
+}
+
+.profile_image {
+    width : 40px;
+    height: 40px;
+    border-radius: 50%;
+    border: 1px solid black;
+    margin: 0 3% 0 2%;
+}
+
+.author_info {
+    width: 70%;
+    display: flex;
+    flex-direction: column;
+}
+
+p {
+    margin: 0;
+}
+
+.chatting {
+    font-size: 12px;
+}
+
