@@ -2,12 +2,7 @@ package com.spring.author.domain;
 
 import java.util.List;
 
-import jakarta.persistence.Column;
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
-import jakarta.persistence.OneToMany;
+import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Getter;
@@ -31,6 +26,6 @@ public class Authors {
 	@Column(name = "author_info")
     private String author_info;
 
-    @OneToMany(mappedBy = "authors")
-    private List<AuthorBooks> author_books;
+	@OneToMany(mappedBy = "authors")
+    private List<AuthorBooks> authorBooks;
 }

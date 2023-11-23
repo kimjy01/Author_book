@@ -1,15 +1,11 @@
 package com.spring.author.domain;
 
+import java.util.ArrayList;
 import java.util.List;
 
-import jakarta.persistence.Column;
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
-import jakarta.persistence.JoinColumn;
-import jakarta.persistence.ManyToOne;
-import jakarta.persistence.OneToMany;
+import org.hibernate.annotations.ColumnDefault;
+
+import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Getter;
@@ -23,32 +19,47 @@ import lombok.NoArgsConstructor;
 public class Users {
 
 	@Id
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	@Column(name = "id", updatable = false)
-	private Long id;
-	
-	@Column(name = "email", nullable = false, unique = true)
-	private String email;
-	
-	@Column(name = "password")
-	private String password;
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "id", updatable = false)
+    private Long id;
+    
+    @Column(name = "email", nullable = false, unique = true)
+    private String email;
+    
+    @Column(name = "password")
+    private String password;
 
-	@Column(name = "name")
+    @Column(name = "name")
     private String name;
-	
-	@Column(name = "nickname")
+    
+    @Column(name = "nickname")
     private String nickname;
 
-	@Column(name = "rate")
+    @Column(name = "rate")
+    @ColumnDefault("0")
     private int rate;
 
     @ManyToOne
     @JoinColumn(name = "role_id")
     private Roles role;
 
-    @OneToMany(mappedBy = "users")
-    private List<BookReviews> book_reviews;
+    @ManyToOne
+    @JoinColumn(name = "author_book_id")
+    private AuthorBooks authorBook;
 
-    @OneToMany(mappedBy = "users")
-    private List<Subscriptions> subscriptions;
+    @OneToMany(mappedBy = "user", cascade = CascadeType.ALL, orphanRemoval = true)
+    private List<BookReviews> bookReviews = new ArrayList<>();
+
+    @OneToMany(mappedBy = "user", cascade = CascadeType.ALL, orphanRemoval = true)
+    private List<Subscriptions> subscriptions = new ArrayList<>();
+
+    @OneToMany(mappedBy = "user", cascade = CascadeType.ALL, orphanRemoval = true)
+    private List<ChallengeUsers> userChallenges = new ArrayList<>();
+
+    @ManyToOne
+    @JoinColumn(name = "challenge_id")
+    private Challenges challenge;
+
+    @OneToMany(mappedBy = "user", cascade = CascadeType.ALL, orphanRemoval = true)
+    private List<ChallengeUsers> challengeUsers = new ArrayList<>();
 }

@@ -1,12 +1,8 @@
 package com.spring.author.domain;
 
-import jakarta.persistence.Column;
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
-import jakarta.persistence.JoinColumn;
-import jakarta.persistence.ManyToOne;
+import java.util.List;
+
+import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Getter;
@@ -21,7 +17,7 @@ public class ChallengeUsers {
 
 	@Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-	@Column(name = "id", updatable = false)
+    @Column(name = "id", updatable = false)
     private Long id;
 
     @ManyToOne
@@ -31,4 +27,14 @@ public class ChallengeUsers {
     @ManyToOne
     @JoinColumn(name = "challenge_id")
     private Challenges challenge;
+
+    // 수정: ManyToOne 관계로 변경
+    @ManyToOne
+    @JoinColumn(name = "parent_challenge_user_id")
+    private ChallengeUsers parentChallengeUser;
+
+    // 추가: 자식 ChallengeUsers 리스트
+    @OneToMany(mappedBy = "parentChallengeUser", cascade = CascadeType.ALL, orphanRemoval = true)
+    private List<ChallengeUsers> childChallengeUsers;
+    
 }

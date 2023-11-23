@@ -2,13 +2,7 @@ package com.spring.author.domain;
 
 import java.util.List;
 
-import jakarta.persistence.Column;
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
-import jakarta.persistence.JoinColumn;
-import jakarta.persistence.ManyToOne;
+import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Getter;
@@ -35,7 +29,7 @@ public class AuthorBooks {
 	@Column(name = "book_type")
     private String book_type;
 
-    @ManyToOne
-    @JoinColumn(name = "author_id")
-    private Authors author;
+	@ManyToOne
+    @JoinColumn(name = "authors_id")
+    private Authors authors;
 }

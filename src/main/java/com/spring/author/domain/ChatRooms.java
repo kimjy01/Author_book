@@ -5,12 +5,7 @@ import java.util.List;
 
 import org.springframework.data.annotation.CreatedDate;
 
-import jakarta.persistence.Column;
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
-import jakarta.persistence.OneToMany;
+import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Getter;
@@ -25,16 +20,16 @@ public class ChatRooms {
 
 	@Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-	@Column(name = "id", updatable = false)
+    @Column(name = "id", updatable = false)
     private Long id;
 
-	@CreatedDate
-	@Column(name = "created_at")
+    @CreatedDate
+    @Column(name = "created_at")
     private LocalDateTime created_at;
 
-    @OneToMany(mappedBy = "chat_rooms")
+    @OneToMany(mappedBy = "chatRoom")
     private List<Messages> messages;
 
-    @OneToMany(mappedBy = "chat_rooms")
-    private List<ChatRoomUsers> chat_room_users;
+    @OneToMany(mappedBy = "chatRoom", cascade = CascadeType.ALL, orphanRemoval = true)
+    private List<ChatRoomUsers> chatRoomUsers;
 }

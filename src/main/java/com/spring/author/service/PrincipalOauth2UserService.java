@@ -54,9 +54,8 @@ public class PrincipalOauth2UserService extends DefaultOAuth2UserService {
 			oAuth2UserInfo = new KakaoUserInfo( (Map)oAuth2User.getAttributes());
 		}
 
-		String provider_id = oAuth2UserInfo.getProviderId();
 		String email = oAuth2UserInfo.getEmail();
-		String social_id = provider + "_" + provider_id;
+		String name = oAuth2UserInfo.getName();
 		
 		Optional<Users> optionalUsers = userRepository.findByEmail(email);
 		Users users = null;
@@ -64,9 +63,7 @@ public class PrincipalOauth2UserService extends DefaultOAuth2UserService {
 		if (optionalUsers.isEmpty()) {
 			users = Users.builder()
 					.email(email)
-					.provider(provider)
-					.provider_id(provider_id)
-					.social_id(social_id)
+					.name(name)
 					.build();
 			userRepository.save(users);
 		} else {
