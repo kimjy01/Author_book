@@ -9,7 +9,6 @@ import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
-import jakarta.persistence.OneToMany;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Getter;
@@ -20,35 +19,21 @@ import lombok.NoArgsConstructor;
 @Getter
 @NoArgsConstructor
 @AllArgsConstructor
-public class Users {
+public class Subscriptions {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name = "id", updatable = false)
 	private Long id;
 	
-	@Column(name = "email", nullable = false, unique = true)
-	private String email;
-	
-	@Column(name = "password")
-	private String password;
-
-	@Column(name = "name")
-    private String name;
-	
-	@Column(name = "nickname")
-    private String nickname;
-
-	@Column(name = "rate")
-    private int rate;
+	@Column(name = "is_subscribe")
+	private boolean is_subscribe;
 
     @ManyToOne
-    @JoinColumn(name = "role_id")
-    private Roles role;
+    @JoinColumn(name = "user_id")
+    private Users user;
 
-    @OneToMany(mappedBy = "users")
-    private List<BookReviews> book_reviews;
-
-    @OneToMany(mappedBy = "users")
-    private List<Subscriptions> subscriptions;
+    @ManyToOne
+    @JoinColumn(name = "author_id")
+    private Authors author;
 }

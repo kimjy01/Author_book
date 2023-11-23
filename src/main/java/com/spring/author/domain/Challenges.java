@@ -20,35 +20,24 @@ import lombok.NoArgsConstructor;
 @Getter
 @NoArgsConstructor
 @AllArgsConstructor
-public class Users {
+public class Challenges {
 
 	@Id
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name = "id", updatable = false)
-	private Long id;
-	
-	@Column(name = "email", nullable = false, unique = true)
-	private String email;
-	
-	@Column(name = "password")
-	private String password;
+    private Long id;
 
-	@Column(name = "name")
-    private String name;
+	@Column(name = "is_participation")
+    private boolean is_participation;
 	
-	@Column(name = "nickname")
-    private String nickname;
+	@Column(name = "is_success")
+    private boolean is_success;
 
-	@Column(name = "rate")
-    private int rate;
+    @OneToMany(mappedBy = "challenges")
+    private List<ChallengeUsers> challenge_users;
 
     @ManyToOne
-    @JoinColumn(name = "role_id")
-    private Roles role;
+    @JoinColumn(name = "author_book_id")
+    private AuthorBooks author_book;
 
-    @OneToMany(mappedBy = "users")
-    private List<BookReviews> book_reviews;
-
-    @OneToMany(mappedBy = "users")
-    private List<Subscriptions> subscriptions;
 }
