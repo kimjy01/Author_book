@@ -1,0 +1,117 @@
+<head>
+    <link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet">
+    <link rel="stylesheet" type="text/css" href="../static/css/book.css">
+    <script src="../static/js/book.js"></script>
+</head>
+<div class="title">
+    <h2>나의 서재</h2>
+</div>
+
+<div class="lines">
+    <!--책 선반 줄 생기는 부분-->
+</div>
+
+<!--책 모음-->
+<div class="chat_wrap">
+    <div class="bookStoreElement">
+        <div class="books"> <!--책 추가하기 + 버튼 부분 -->
+            <button type="button" class="plus" id="popAddModal" th:data-id="${user.email}">
+                <b>+</b>
+            </button>
+        </div>
+
+        <div class="books"> <!--⭐⭐반복문?-->
+            <button type="button" id="popModal">
+                <img src="../static/image/test.png" alt="" class="bookImg"> <!--⭐⭐책 이미지-->
+            </button>
+        </div>
+    </div>
+</div>
+<!--책 모음 끝--------------------------------------------------------------------------->
+
+<!--책 추가하기 모달창-->
+<div id="addModal" class="addModal">
+    <div class="addModal-content">
+        <div class="title_wrap">
+            <p class="modal_author">책 추가하기</p>
+            <p class="popClose">
+                <img src="../static/image/closeBtn.png" alt="" id="addModalClose">
+            </p>
+        </div>
+
+        <!--책 정보 Form-->
+        <form action="add" method="post" class="infoForm">
+            <div class="bookInfo">
+                <div class="bookTitle">
+                    <p class="bookName">책 제목: </p>
+                    <p class="bookNameInput">
+                        <input type="text" name="book_name">
+                    </p>
+                </div>
+            
+                <div class="bookAuthor">
+                    <p class="authorName">작가: </p>
+                    <p class="authorNameInput">
+                        <input type="text" name="author_name">
+                    </p>
+                </div>
+            
+                <div class="reviewPart">
+                    <p class="reviewTitle">느낀점:</p>
+                    <textarea name="review_content" id="writeReview"></textarea>
+                </div>
+            </div>
+
+            <div class="submitPart">
+                <button type="submit" class="submitBtn">확인</button>
+                <div class="check">
+                    <input type="checkbox" name="is_public" value="true" checked>
+                    <p class="share">모두에게 공유합니다.</p>
+                </div>
+            </div>
+            <input type="hidden" id="userId" name="userId" value="">
+        </form>
+    </div>
+</div>
+<!--책 추가하기 모달창 끝--------------------------------------------------------------------------->
+
+<!--책 정보 보기 모달창-->
+<div id="modal" class="addModal">
+    <div class="Modal-content">
+        <div class="title_wrap">
+            <p class="modal_author">달러구트 꿈 백화점</p> <!--⭐⭐여기 책 이름(타이틀) -->
+            <p class="popClose">
+                <img src="../static/image/closeBtn.png" alt="" id="modalClose">
+            </p>
+        </div>
+
+        <div class="infoForm">
+            <div class="bookInfo">
+                <div class="bookTitle">
+                    <p class="bookName">작가: </p>
+                    <div class="bookAuthorName">
+                        <!--⭐⭐여기 작가 이름 -->
+                        김지연
+                    </div>
+                </div>
+            
+                <div class="myReview"> 
+                    <p class="myReviewTitle">나의 느낀점:</p>
+                    <div class="bookReview">
+                        <!--⭐⭐여기 내 느낀점 내용 -->
+                        내 느낀점
+                    </div>
+                </div>
+
+                <div class="otherReview">
+                    <p class="otherReviewTitle">타인의 기록:</p>
+                    <div class="otherbookReview"> <!--⭐⭐반복문?-->
+                        <!--⭐⭐여기 타인의 느낀점 내용 -->
+                        타인의 느낀점
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!--책 정보 보기 모달창 끝--------------------------------------------------------------------------->

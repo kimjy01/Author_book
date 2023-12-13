@@ -39,9 +39,9 @@ public class Users {
     @ColumnDefault("0")
     private int rate;
 
-    @ManyToOne
-    @JoinColumn(name = "role_id")
-    private Roles role;
+    @Column(name = "role")
+    @ColumnDefault("READER")
+    private String role;
 
     @ManyToOne
     @JoinColumn(name = "author_book_id")

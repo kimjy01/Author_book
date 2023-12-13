@@ -5,6 +5,7 @@ import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.web.authentication.logout.SecurityContextLogoutHandler;
 import org.springframework.stereotype.Controller;
 import org.springframework.validation.BindingResult;
+import org.springframework.validation.FieldError;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 
@@ -26,6 +27,14 @@ public class UserController {
 	public String signup(@Valid AddUserRequest request, BindingResult bindingResult) {
 		
 		if (bindingResult.hasErrors()) {
+			
+			System.out.println("Errors in form submission:");
+
+		    // 각 에러를 순회하면서 출력
+		    for (FieldError error : bindingResult.getFieldErrors()) {
+		        System.out.println(error.getField() + ": " + error.getDefaultMessage());
+		    }
+		    
 			return "signup";
 		}
 		

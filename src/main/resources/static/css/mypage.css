@@ -21,13 +21,14 @@
 }
 
 .info_wrap {
-    width: 70%;
+    width: 55%;
     margin-left: 30px;
     display: flex;
     flex-direction: column;
 }
 
 .profile_name {
+	width: 100%;
     font-size: 30px;
 }
 
@@ -44,9 +45,10 @@
 }
 
 .profile_info > span {
-    width: 30%;
+    width: 100%;
     display: flex;
     margin-right: 10px;
+    align-items: center;
 }
 
 .profile_info > span > p {
@@ -98,4 +100,19 @@ p {
 
 .btn_logout:hover {
     background-color: rgba(116, 252, 175, 0.8);
+}
+
+.writer, .reader {
+	display: flex;
+	align-items: center;
+	width: 20%;
+}
+
+.writer > div, .reader >div {
+	background-color: aquamarine;
+	border-radius: 25px;
+	width: 100%;
+	height: 30px;
+	text-align: center;
+	line-height: 30px;
 }

@@ -3,7 +3,6 @@ package com.spring.author.service;
 import java.util.Map;
 import java.util.Optional;
 
-import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.oauth2.client.userinfo.DefaultOAuth2UserService;
 import org.springframework.security.oauth2.client.userinfo.OAuth2UserRequest;
 import org.springframework.security.oauth2.core.OAuth2AuthenticationException;
@@ -14,7 +13,6 @@ import com.spring.author.domain.PrincipalDetails;
 import com.spring.author.domain.Users;
 import com.spring.author.oauth.GoogleUserInfo;
 import com.spring.author.oauth.KakaoUserInfo;
-import com.spring.author.oauth.NaverUserInfo;
 import com.spring.author.oauth.OAuth2UserInfo;
 import com.spring.author.repository.UserRepository;
 
@@ -43,11 +41,6 @@ public class PrincipalOauth2UserService extends DefaultOAuth2UserService {
 			log.info("구글 로그인 요청");
 			oAuth2UserInfo = new GoogleUserInfo(oAuth2User.getAttributes());
 			
-		} else if (provider.equals("naver")) {
-			
-			log.info("네이버 로그인 요청");
-			oAuth2UserInfo = new NaverUserInfo( (Map)oAuth2User.getAttributes().get("response"));
-			
 		} else if (provider.equals("kakao")) {
 			
 			log.info("카카오 로그인 요청");
@@ -64,6 +57,7 @@ public class PrincipalOauth2UserService extends DefaultOAuth2UserService {
 			users = Users.builder()
 					.email(email)
 					.name(name)
+					.role("READER")
 					.build();
 			userRepository.save(users);
 		} else {

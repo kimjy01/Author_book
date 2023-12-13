@@ -42,7 +42,7 @@ public class WebSecurityConfig {
 			        formLogin
 			            .loginPage("/login")
 			            .usernameParameter("email")
-			            .defaultSuccessUrl("/");
+			            .defaultSuccessUrl("/", true);
 			    })
 			    // 로그아웃 설정
 			    .logout(logout -> {
@@ -55,7 +55,7 @@ public class WebSecurityConfig {
 			    // oauth2 login
 			    .oauth2Login(oauth2Login -> oauth2Login
 		    	    .loginPage("/login")
-		    	    .defaultSuccessUrl("/")
+		    	    .defaultSuccessUrl("/", true)
 		    	    .userInfoEndpoint(userInfo -> userInfo
 		    	        .userService(principalOauth2UserService)
 		    	    )

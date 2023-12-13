@@ -1,0 +1,125 @@
+<head>
+    <link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet">
+    <link rel="stylesheet" type="text/css" href="../static/css/challenge.css">
+    <script src="../static/js/challenge.js"></script>
+</head>
+<div class="title">
+    <h2>월간 챌린지 달력</h2>
+    <h2 id="change"></h2> <!--상단에 "~월 년도" 부분-->
+</div>
+
+<div class="chat_wrap">
+    <!--달력 부분-->
+    <div class="CalendarStart"> <!--⭐여기 달력 코드 베껴왔는데 뭐 안되면 지연이에게 토스...-->
+        <table class="Calendar">
+            <thead>
+                <tr>
+                    <td onClick="prevCalendar();">&#60;</td>
+                    <td colspan="5">
+                        <span id="calYear"></span>년
+                        <span id="calMonth"></span>월
+                    </td>
+                    <td onClick="nextCalendar();">&#62;</td>
+                </tr>
+                <tr>
+                    <td>일</td>
+                    <td>월</td>
+                    <td>화</td>
+                    <td>수</td>
+                    <td>목</td>
+                    <td>금</td>
+                    <td>토</td>
+                </tr>
+            </thead>
+
+            <tbody>
+            </tbody>
+        </table>
+    </div> 
+    <!--달력 부분 끝--------------------------------------------------------------------------->
+
+    <!--오늘의 챌린지 부분-->
+    <div class="todayChallenge"> 
+        <h1>오늘의 챌린지</h1>
+
+        <div class="challengeList">
+            <div class="challenges"> <!--⭐⭐ 반복문?-->
+                <img src="../static/image/uncheck.png" alt="" onclick="changeCheck(this)" id="check">
+                <p class="detail">달과 6펜스 완독하기</p> <!--⭐⭐여기 오늘의 챌린지 내용 부분-->
+            </div>
+        </div>
+
+        <div class="challengeAddBtn">
+            <button type="button" id="popChallengeModal">
+                챌린지 추가하기
+            </button>
+        </div>
+    </div>
+    <!--오늘의 챌린지 부분 끝--------------------------------------------------------------------------->
+
+    <!--어서 챌린지 참여하기 부분-->
+    <div class="otherChallenge">
+        <h2>어서 챌린지 참여하기</h2>
+        <div class="underline"></div>
+
+        <div class="otherBook"> <!--⭐⭐ 반복문?-->
+            <div class="bookImg">
+                <img src="../static/image/test.png" alt=""> <!--⭐⭐여기 책 이미지 부분-->
+            </div>
+
+            <div class="otherBookInfo">
+                <p class="otherBookTitle">누구와 함께하는 라라라라라라라</p> <!--⭐⭐여기 "누구와 함께하는" 부분-->
+                <p class="otherbookName"><b>따라라라책안녕낭녕dksjd</b></p> <!--⭐⭐여기 책 이름 부분-->
+                <p class="otherBookDate">기간: 2023.12.1~2023.12.25</p> <!--⭐⭐여기 기간 부분-->
+                <p class="otherBookWord">겨울 시간 취미 노력</p>  <!--⭐⭐여기 책 키워드? 부분-->
+            </div>
+
+            <div class="doChallenge"> 
+                <button type="button">챌린지 도전하기</button> <!--⭐⭐여기 "챌린지 도전하기" 버튼-->
+            </div>
+        </div>
+    </div>
+</div>
+<!--어서 챌린지 참여하기 부분 끝--------------------------------------------------------------------------->
+
+<!--챌린지 추가하기 모달창-->
+<div id="challengeModal" class="challengeModal">
+    <div class="addModal-content">
+        <div class="title_wrap">
+            <p class="modal_author">챌린지 추가하기</p>
+            <p class="popClose">
+                <img src="../static/image/closeBtn.png" alt="" id="challengeModalClose">
+            </p>
+        </div>
+
+        <!--⭐⭐챌린지 추가하기 Form-->
+        <form action="" method="post" class="infoForm">
+            <div class="bookInfo">
+                <div class="bookTitle">
+                    <p class="bookName">책 제목: </p>
+                    <p class="bookNameInput">
+                        <input type="text">
+                    </p>
+                </div>
+
+                <div class="allRead">
+                    <input type="checkbox" id="bookAll">
+                    <p class="all">완독하기</p>
+                </div>
+            
+                <div class="bookPage">
+                    <p class="bookGoalPage">목표페이지:</p>
+                    <p class="bookPageInput">
+                        <input type="text" id="textInput">
+                    </p>
+                </div>
+            </div>
+
+            <div class="submitPart">
+                <button type="submit" class="submitBtn">확인</button>
+            </div>
+        </form>
+    </div>
+</div>
+<!--챌린지 추가하기 모달창 끝--------------------------------------------------------------------------->
+

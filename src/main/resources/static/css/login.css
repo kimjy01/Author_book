@@ -59,6 +59,7 @@
     font-size: 13px;
     margin-bottom: 3%;
     border: 0.5px solid;
+    cursor: pointer;
 }
 
 .social_login > img {

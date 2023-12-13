@@ -1,7 +1,6 @@
 <head>
     <link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet">
     <link rel="stylesheet" type="text/css" href="../static/css/mypage.css">
-    <script src="../static/js/mypage.js"></script>
 </head>
 <div class="profile">
     <div class="profile_wrap">
@@ -10,27 +9,36 @@
         </div>
         <div class="info_wrap">
             <div class="profile_name">
-                <p>사용자 님</p>
+                <p>[[${user.name}]] 님</p>
             </div>
             <div class="profile_info">
-                <span>서북이 단계<p>10</p></span>
+                <span>
+                	<p>서북이 단계</p>
+                	<p>[[${user.rate}]]</p>
+                </span>
             </div>
         </div>
+        <div th:if="${user.role == 'AUTHOR'}" class="writer">
+	        <div>작가</div>
+	    </div>
+	    <div th:if="${user.role == 'READER'}" class="reader">
+	        <div>독자</div>
+	    </div>
     </div>
     <div class="profile_info_wrap">
         <div class="write_book">
             <p>기록한 책</p>
-            <p>13</p>
+            <p th:text="${bookCnt}"></p>
         </div>
         <hr>
         <div class="write_challege">
             <p>참여한 챌린지</p>
-            <p>23</p>
+            <p th:text="${challengeCnt}"></p>
         </div>
     </div>
 </div>
 
 <hr class="separate">
 
-<button type="button" class="btn_logout"> 로그아웃 </button>
+<button type="button" class="btn_logout" onclick="location.href='logout'"> 로그아웃 </button>
 

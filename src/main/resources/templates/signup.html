@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -11,10 +11,10 @@
     <div class="container">
         <div class="logo"></div>
         <div class="form_wrap">
-            <form class="login_form" action="" method="post">
+            <form class="login_form" action="user" method="post">
                 <div class="login_wrap">
                     <p class="login_info">이름</p>
-                    <input class="login_input" type="text" name="username" placeholder="이름을 입력해주세요." required>
+                    <input class="login_input" type="text" name="name" placeholder="이름을 입력해주세요." required>
                 </div>
                 <div class="login_wrap">
                     <p class="login_info">이메일(아이디)</p>
@@ -22,17 +22,17 @@
                 </div>
                 <div class="login_wrap">
                     <p class="login_info">비밀번호</p>
-                    <input class="login_input" type="password" name="password1" placeholder="비밀번호를 입력해주세요." required>
+                    <input class="login_input" type="password" name="password" placeholder="비밀번호를 입력해주세요." required>
                 </div>
                 <div class="login_wrap">
                     <p class="login_info">비밀번호 확인</p>
-                    <input class="login_input" type="password" name="password2" placeholder="비밀번호를 다시 입력해주세요." required>
+                    <input class="login_input" type="password" name="passwordCheck" placeholder="비밀번호를 다시 입력해주세요." required>
                 </div>
                 <button type="submit" class="btn_login"> 회원가입 </button>
             </form>
         </div>
 
-        <p>계정이 있으시다면! <a class="login_link" href="#">로그인하기</a></p>
+        <p>계정이 있으시다면! <a class="login_link" href="login">로그인하기</a></p>
     </div>
 </body>
 </html>

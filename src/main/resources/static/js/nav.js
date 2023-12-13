@@ -4,29 +4,29 @@ $('.nav-bar__item').click(function(){
 
 $('.challenge').click(function(){
     $.ajax({
-        url : '10.ajax1-update.html',
+        url : 'challenge',
         dataType: 'html',
         method: 'get',
         data: {}
     }).done(function(data){
-        $('.col-8').html(data);
+        $('.contents_wrap').html(data);
     });
 });
 
 $('.book').click(function(){
     $.ajax({
-        url : '10.ajax1-update.html',
+        url : 'book',
         dataType: 'html',
         method: 'get',
         data: {}
     }).done(function(data){
-        $('.col-8').html(data);
+        $('.contents_wrap').html(data);
     });
 });
 
 $('.home').click(function(){
     $.ajax({
-        url : '../templates/home.html',
+        url : 'home',
         dataType: 'html',
         method: 'get',
         data: {}
@@ -37,7 +37,7 @@ $('.home').click(function(){
 
 $('.chat').click(function(){
     $.ajax({
-        url : '../templates/chat_list.html',
+        url : 'chatList',
         dataType: 'html',
         method: 'get',
         data: {}
@@ -48,7 +48,7 @@ $('.chat').click(function(){
 
 $('.mypage').click(function(){
     $.ajax({
-        url : '../templates/mypage.html',
+        url : 'mypage',
         dataType: 'html',
         method: 'get',
         data: {}

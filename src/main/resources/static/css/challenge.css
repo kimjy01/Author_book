@@ -1,0 +1,420 @@
+/*1️⃣페이지 타이틀 부분 */
+.title  {
+    margin-top: 3%;
+    margin-bottom: 5%;
+    width: 94%;
+    /* border: 1px solid red; */
+    color: #50B47C;
+}
+
+.title h2 {
+    margin: 0;
+}
+/*페이지 타이틀 부분 끝-------------------------------------------------------------------------*/
+
+/*2️⃣전체 컨텐츠 css */
+.chat_wrap {
+    border-radius: 4px;
+    display: flex;
+    flex-direction: column;
+    /* flex-wrap: wrap; */
+    /* justify-content: space-between; */
+    /* border: 1px solid blue; */
+    width: 94%;
+    /* height: 100%; */
+    /* row-gap: 10%; */
+    /* border: 1px solid #98C5AB; */
+    padding-bottom: 150px; /*이거 보류*/
+    align-items: center;
+}
+/*전체 컨텐츠 css-------------------------------------------------------------------------*/
+
+/*3️⃣달력 부분 css*/
+.CalendarStart {
+    background-color: white;
+    height: auto;
+    width: 88%;
+    margin: 0px;
+    padding: 20px;
+    margin: 0 auto;
+    border-radius: 5px;
+    box-shadow: 0px 40px 30px -20px rgba(0, 0, 0, 0.3);
+    box-shadow: 0px 8px 15px 0px rgba(0, 0, 0, 0.20);
+    margin-bottom: 13%;
+}
+
+td {
+    width: 50px;
+    height: 50px;
+}
+
+.Calendar {
+    text-align: center;
+    margin-left: 3%;
+}
+
+.Calendar>thead>tr:first-child>td {
+    font-family: 'Questrial', sans-serif;
+    font-size: 1.1em;
+    font-weight: bold;
+    cursor: pointer;
+    font-family: 'GmarketSansMedium';
+}
+
+.Calendar>thead>tr:last-child>td {
+    font-family: 'Questrial', sans-serif;
+    font-weight: 600;
+    font-family: 'GmarketSansMedium';
+}
+
+.Calendar>tbody>tr>td>p {
+    font-family: 'Montserrat', sans-serif;
+    height: 45px;
+    width: 45px;
+    border-radius: 45px;
+    transition-duration: .2s;
+    line-height: 45px;
+    margin: 2.5px;
+    display: block;
+    text-align: center;
+    font-family: 'GmarketSansMedium';
+}
+
+/* .pastDay {
+            color: lightgray;
+        } */
+
+.today {
+    background-color: #DDEBE3;
+    /* color: #fff; */
+    font-weight: 600;
+    cursor: pointer;
+}
+
+.futureDay {
+    background-color: #FFFFFF;
+    cursor: pointer;
+}
+
+.futureDay:hover {
+    background: #eee;
+}
+
+.futureDay.choiceDay,
+.today.choiceDay {
+    background: rgb(202, 202, 202);
+    color: #fff;
+    font-weight: 600;
+    cursor: pointer;
+}
+/*달력 부분 css 끝-------------------------------------------------------------------------*/
+
+/*4️⃣오늘의 챌린지 부분 css*/
+.todayChallenge { /*오늘의 챌린지 부분 전체 div*/
+    clear: both;
+    width: 97%;
+    text-align: center;
+    border: 1px solid var(--d-4-d-4-d-4-light-grey, #D4D4D4);
+    box-shadow: 0px 8px 15px 0px rgba(0, 0, 0, 0.20);
+    background: rgba(242, 248, 245, 0.96);
+}
+
+.todayChallenge > h1 { /*오늘의 챌린지 제목 부분*/
+    margin-bottom: 7%;
+}
+
+.challengeList { /* 챌린지 내용 부분 전체 div*/
+    font-size: 20px;
+    width: 48%;
+    margin: 0 auto;
+}
+
+.challenges { /* 챌린지 내용 */
+    clear:both;
+    margin-bottom: 10%;
+}
+
+.challenges img { /* 챌린지 내용 체크박스 이미지 */
+    float: left;
+    clear: both;
+    cursor: pointer;
+    margin-right: 5%;
+}
+
+.textLine { /* (js사용) 챌린지 성공하면 중앙선 긋기 위한 css*/
+    text-decoration: line-through;
+    text-decoration-color: gray;
+    color: gray;
+}
+
+.challengeAddBtn { /*챌린지 추가하기 부분 div*/
+    margin: 7% 0%;
+}
+
+.challengeAddBtn button {  /*챌린지 추가하기 버튼 */
+    width: 80%;
+    height: 35px;
+    font-size: 17px;
+    font-family: 'GmarketSansMedium';
+    background-color: #D7F2E3;
+    border: 1px solid gray;
+    border-radius: 4px;
+    cursor: pointer;
+} 
+/*챌린지 부분 끝-------------------------------------------------------------------------*/
+
+/*5️⃣어서 챌린지 참여하기 css*/
+.otherChallenge { /*어서 챌린지 참여하기 전체 div*/
+    margin-top: 13%;
+    width: 90%;
+}
+
+.underline { /*타이틀 밑에 형광펜 효과 주기 위한 div*/
+    border: 10px solid #D7F2E3;
+    border-radius: 7px;
+    width: 43%;
+    position: absolute;
+    margin-top: -35px;
+    z-index:-4;
+}
+
+.otherBook { /* 책 부분에 대한 전체 div*/
+    margin: 0 auto;
+    width: 80%;
+    margin-top: 8%;
+    margin-bottom: 20%;
+}
+
+.bookImg { /*책 이미지 부분 div*/
+    float: left;
+    width: 30%;
+    height: 10%;
+}
+
+.bookImg img { /*책 이미지*/
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.otherBookInfo { /*책 정보 부분 div*/
+    float: right;
+}
+
+.otherBookTitle { /*"~와 함께하는"*/
+    clear: both;
+    margin: 10% 0% 0% 0%;
+    color: #168849;
+    overflow-x: auto;
+}
+
+.otherbookName { /*책 이름*/
+    margin: 3% 0% 0% 0%;
+    font-size: 18px;
+}
+
+.otherBookDate { /*기간*/
+    font-size: 12px;
+    border-top: 1px solid #8a8a8a80;
+    border-bottom: 1px solid #8a8a8a80;
+    padding: 5% 0%;
+    margin: 5% 0% 0% 0%;
+}
+
+.otherBookWord { /*책 키워드*/
+    font-size: 11px;
+    margin: 6% 0% 0% 0%;
+    color: gray;
+}
+
+.doChallenge { /*챌린지 도전하기 부분 div*/
+    clear: both;
+    padding-top: 8%;
+    text-align: center;
+}
+
+.doChallenge button { /*챌린지 도전하기 버튼*/
+    font-size: 16px;
+    width: 100%;
+    background-color: #D7F2E3;
+    border: 1px solid gray;
+    padding: 1% 0%;
+    font-family: 'GmarketSansMedium';
+    border-radius: 4px;
+    
+}
+/*어서 챌린지 참여하기 끝-------------------------------------------------------------------------*/
+
+/*6️⃣챌린지 추가하기 모달창*/
+.challengeModal { /*모달창 상위 div*/
+    animation: fadeInDown 1s;
+    width: 500px;
+    height: 100%;
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    padding: 0;
+    background-color: rgba(217, 217, 217, 0.6);
+    z-index: 999;
+    margin: 0 auto;
+}
+
+.addModal-content { /*모달창 컨텐츠 부분 div*/
+    border-radius: 4px;
+    background-color: white;
+    border: 2px solid gray;
+    position: absolute;
+    top: 18%;
+    left: 0;
+    right: 0;
+    width: 77%; /*350px*/
+    height: 400px;
+    margin: 0 auto;
+    padding: 0;
+    z-index: 6;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.title_wrap { /*모달창 제목 div*/
+    width: 100%;
+    height: 16%;
+    background-color: #DDEFE4;
+    border-bottom: 2px solid gray;
+}
+
+.modal_author { /*모달창 제목 p*/
+    color: black;
+    font-size: 20px;
+    font-weight: bold;
+    margin-top: 20px;
+    float: left;
+    margin-left: 15px;
+}
+
+.popClose { /*모달창 제목 옆 X 버튼 p tag*/
+    float: right;
+    margin-top: 20px;
+    margin-right: 10px;
+    font-size: 25px;
+}
+
+.popClose img { /*모달창 제목 옆 X 버튼 이미지*/
+    height: 25px;
+    cursor: pointer;
+}
+
+.infoForm { /* 제출하기 form*/
+    height: 100%;
+    margin: 0;
+}
+
+.bookInfo { /*입력하는 부분 div*/
+    width: 85%;
+    height: 70%;
+    margin: 0 auto;
+    box-sizing: border-box;
+}
+
+.bookTitle { /*책 이름 쓰는 줄 div*/
+    margin-top: 5%;
+    height: 13%;
+}
+
+.bookName { /*"책 제목:" 이 부분 p 태그*/
+    float: left;
+    margin-top: 5%;
+    font-size: 17px;
+    /* margin-left: 5%; */ /*✔보류*/
+}
+
+.bookGoalPage { /*"목표페이지:" 이 부분 p 태그*/
+    float: left;
+    margin-top: 1%;
+    font-size: 17px;
+}
+
+.bookNameInput, .bookPageInput { /*책 제목이랑 목표페이지 작성 부분 p tag*/
+    height: 100%;
+}
+
+.bookNameInput input { /*책 이름 쓰는 p 태그 안 input*/
+    border: 1px solid #D4D4D4;
+    outline: none;
+    height: 80%;
+    margin-top: 4%;
+    width: 70%;
+    margin-left: 8%;
+    font-family: 'GmarketSansMedium';
+    font-size: 15px;
+}
+
+.bookPageInput input { /*목표페이지 이름 쓰는 p 태그 안 input*/
+    border: 1px solid #D4D4D4;
+    outline: none;
+    height: 80%;
+    width: 64%;
+    margin-left: 5%;
+    font-family: 'GmarketSansMedium';
+    font-size: 15px;
+}
+
+.bookPage { /*목표페이지 이름 쓰는 줄 div*/
+    height: 13%;
+    clear: both;
+    margin: 0;
+}
+
+.allRead { /*완독하기 체크박스 부분 div*/
+    clear: both;
+    float: left;
+    margin: 5% 0;
+}
+
+.allRead input{ /*완독하기 체크박스*/
+    zoom: 1.9;
+    margin: 0px 5px 0px 0px;
+    accent-color: black;
+    cursor: pointer;
+}
+
+.all { /*"완독하기" 글자 부분*/
+    margin-top: 4px;
+    float: right;
+
+}
+
+.submitPart { /*확인 버튼 부분 div*/
+    width: 100%;
+    margin: 0;
+}
+
+.submitBtn { /*확인 버튼*/
+    width: 33%;
+    height: 35px;
+    font-family: 'GmarketSansMedium';
+    padding-top: 5px;
+    float: right;
+    margin-right: 5%;
+    font-size: 14px;
+    background-color: #CEE8D9;
+    border: 2px solid gray;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+/*키프레임*/
+@keyframes fadeInDown {
+    0% {
+        opacity: 0;
+        transform: translate3d(0, -10%, 0);
+    }
+    to {
+        opacity: 1;
+        transform: translateZ(0);
+    }
+}
+/*모달창 끝-------------------------------------------------------------------------*/
