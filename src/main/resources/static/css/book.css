@@ -82,6 +82,7 @@
     width: 100%;
     position: absolute;
     margin-top: 330px;
+    z-index: -1;
 }
 /*책 선반 부분 끝-------------------------------------------------------------------------*/
 
@@ -129,7 +130,7 @@
 
 .modal_author { /*모달창 제목*/
     color: black;
-    font-size: 20px;
+    font-size: 15px;
     font-weight: bold;
     margin-top: 20px;
     float: left;
@@ -229,7 +230,7 @@
     font-size: 17px;
 }
 
-#writeReview { /*느낀점 쓰는 textarea창*/
+.writeReview { /*느낀점 쓰는 textarea창*/
     width: 96%;
     max-height: 100%;
     overflow-y: auto;
@@ -360,7 +361,6 @@
 .bookAuthorName { /*작가 이름*/
     border: 1px solid #D4D4D4;
     outline: none;
-    height: 43%;
     margin-top: 4%;
     margin-right: 1%;
     width: 78%;
@@ -371,6 +371,31 @@
     word-break: break-all;
     padding: 3px;
 }
+
+.btn_wrap {
+	display: flex;
+	justify-content: space-evenly;
+	margin-bottom: 30px;
+}
+
+.book_btn {
+	width: 40%;
+    height: 30px;
+    border-radius: 10px;
+    background: #ffffff;
+    font-family: 'GmarketSansMedium';
+    color: #000000;
+    border: 1px solid #98C5AB;
+    margin-top: 5%;
+    text-align: center;
+    line-height: 30px;
+    cursor: pointer;
+}
+
+.book_btn:hover {
+	background-color: rgba(116, 252, 175, 0.8);
+}
+
 /*책 정보 보기 모달창 끝-------------------------------------------------------------------------*/
 
 /*키프레임*/

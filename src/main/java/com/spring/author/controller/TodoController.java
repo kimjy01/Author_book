@@ -10,7 +10,6 @@ import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -18,59 +17,54 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.spring.author.domain.BookReviews;
 import com.spring.author.domain.PrincipalDetails;
+import com.spring.author.domain.Todo;
 import com.spring.author.domain.Users;
 import com.spring.author.dto.AddBookRequest;
+import com.spring.author.dto.AddTodoRequest;
 import com.spring.author.service.BookService;
+import com.spring.author.service.TodoService;
 
 import jakarta.validation.Valid;
 
 @Controller
-public class BookController {
+public class TodoController {
 
 	@Autowired 
-	private BookService bookService;
+	private TodoService todoService;
 	
-	@GetMapping("/book")
-	public String book(@AuthenticationPrincipal PrincipalDetails principalDetails, Model model) {
+	@GetMapping("/challenge")
+	public String challenge(@AuthenticationPrincipal PrincipalDetails principalDetails, Model model) {
 		
 		Users user = principalDetails.getUsers();
 		model.addAttribute("user", user);
 		
-		List<BookReviews> bookReviews = bookService.getBookReviewsByUserId(user.getId());
-        model.addAttribute("bookReviews", bookReviews);
+		List<Todo> todos = todoService.getTodoByUserId(user.getId());
+		model.addAttribute("list", todos);
 		
-		model.addAttribute("list", bookService.bookList());
-		
-		return "book";
+		return "challenge";
 	}
 	
-	@PostMapping("/add")
-	public String addBookReivew(@Valid AddBookRequest request) {
-		bookService.save(request);
+	@PostMapping("/todo/add")
+	public String addTodo(@Valid AddTodoRequest request) {
+		todoService.save(request);
 		
 		return "redirect:/";
 	}
 	
-	@GetMapping("/bookSearch")
-	public String bookSearch() {
+	@PostMapping("/todo/{id}")
+	@ResponseBody
+    public void toggleCheck(@RequestParam Integer id) {
 		
-		return "book_search";
-	}
+		Long todoId = Long.valueOf(id);
+		
+        todoService.toggleCheck(todoId);
+    }
 	
-	@PostMapping("/book/update")
-	public String bookUpdate(@RequestParam Long bookId, @Valid AddBookRequest request) {
+	@GetMapping("/todo/delete")
+	public String todoDelete(Long id) {
 		
-		bookService.updateBook(bookId, request);
-
-		return "redirect:/";
-	}
-	
-	@GetMapping("/book/delete")
-	public String bookDelete(Long id) {
-		
-		bookService.bookDelete(id);
+		todoService.todoDelete(id);
 		
 		return "redirect:/";
 	}
-	
 }

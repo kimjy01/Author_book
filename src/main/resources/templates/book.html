@@ -20,9 +20,9 @@
             </button>
         </div>
 
-        <div class="books"> <!--⭐⭐반복문?-->
-            <button type="button" id="popModal">
-                <img src="../static/image/test.png" alt="" class="bookImg"> <!--⭐⭐책 이미지-->
+        <div class="books" th:each="book : ${bookReviews}"> <!--⭐⭐반복문?-->
+            <button type="button" id="popModal" th:data-title="${book.book_name}" th:data-author="${book.author_name}" th:data-thumbnail="${book.thumbnail}" th:data-isbn="${book.isbn}" th:data-review="${book.review_content}" th:data-id="${book.id}" th:data-userid="${user.email}">
+                <img th:src="${book.thumbnail}" alt="" class="bookImg"> <!--⭐⭐책 이미지-->
             </button>
         </div>
     </div>
@@ -45,29 +45,28 @@
                 <div class="bookTitle">
                     <p class="bookName">책 제목: </p>
                     <p class="bookNameInput">
-                        <input type="text" name="book_name">
+                        <input type="text" id="book_name" name="book_name" onclick="openNewWindow()" readonly>
                     </p>
                 </div>
             
                 <div class="bookAuthor">
                     <p class="authorName">작가: </p>
                     <p class="authorNameInput">
-                        <input type="text" name="author_name">
+                        <input type="text" id="author_name" name="author_name" readonly>
                     </p>
                 </div>
+                
+                <input type="hidden" id="thumbnail" name="thumbnail">
+                <input type="hidden" id="isbn" name="isbn">
             
                 <div class="reviewPart">
                     <p class="reviewTitle">느낀점:</p>
-                    <textarea name="review_content" id="writeReview"></textarea>
+                    <textarea name="review_content" class="writeReview"></textarea>
                 </div>
             </div>
 
             <div class="submitPart">
                 <button type="submit" class="submitBtn">확인</button>
-                <div class="check">
-                    <input type="checkbox" name="is_public" value="true" checked>
-                    <p class="share">모두에게 공유합니다.</p>
-                </div>
             </div>
             <input type="hidden" id="userId" name="userId" value="">
         </form>
@@ -79,7 +78,7 @@
 <div id="modal" class="addModal">
     <div class="Modal-content">
         <div class="title_wrap">
-            <p class="modal_author">달러구트 꿈 백화점</p> <!--⭐⭐여기 책 이름(타이틀) -->
+            <p class="modal_author book-title"></p> <!--⭐⭐여기 책 이름(타이틀) -->
             <p class="popClose">
                 <img src="../static/image/closeBtn.png" alt="" id="modalClose">
             </p>
@@ -91,27 +90,68 @@
                     <p class="bookName">작가: </p>
                     <div class="bookAuthorName">
                         <!--⭐⭐여기 작가 이름 -->
-                        김지연
+                        
                     </div>
                 </div>
             
                 <div class="myReview"> 
                     <p class="myReviewTitle">나의 느낀점:</p>
                     <div class="bookReview">
-                        <!--⭐⭐여기 내 느낀점 내용 -->
-                        내 느낀점
-                    </div>
-                </div>
-
-                <div class="otherReview">
-                    <p class="otherReviewTitle">타인의 기록:</p>
-                    <div class="otherbookReview"> <!--⭐⭐반복문?-->
-                        <!--⭐⭐여기 타인의 느낀점 내용 -->
-                        타인의 느낀점
+                        
                     </div>
                 </div>
             </div>
         </div>
+        <div class="btn_wrap">
+        	<div class="book_btn update">수정</div>
+        	<div class="book_btn delete">삭제</div>
+        </div>
     </div>
 </div>
 <!--책 정보 보기 모달창 끝--------------------------------------------------------------------------->
+
+<!--책 수정하기 모달창-->
+<div id="upModal" class="addModal">
+    <div class="addModal-content">
+        <div class="title_wrap">
+            <p class="modal_author">책 수정하기</p>
+            <p class="popClose">
+                <img src="../static/image/closeBtn.png" alt="" id="upModalClose">
+            </p>
+        </div>
+
+        <!--책 정보 Form-->
+        <form method="post" class="infoForm" id="upForm">
+        	<input type="hidden" name="bookId" class="bookId"/>
+            <div class="bookInfo">
+                <div class="bookTitle">
+                    <p class="bookName">책 제목: </p>
+                    <p class="bookNameInput">
+                        <input type="text" id="book_name" class="info" name="book_name" readonly>
+                    </p>
+                </div>
+            
+                <div class="bookAuthor">
+                    <p class="authorName">작가: </p>
+                    <p class="authorNameInput">
+                        <input type="text" id="author_name" class="info" name="author_name" readonly>
+                    </p>
+                </div>
+                
+                <input type="hidden" id="thumbnail" class="info" name="thumbnail">
+                <input type="hidden" id="isbn" class="info" name="isbn">
+            
+                <div class="reviewPart">
+                    <p class="reviewTitle">느낀점:</p>
+                    <textarea class="info writeReview" name="review_content" ></textarea>
+                </div>
+            </div>
+
+            <div class="submitPart">
+                <button type="submit" class="submitBtn">확인</button>
+            </div>
+            <input type="hidden" id="userId" name="userId" class="info">
+        </form>
+    </div>
+</div>
+<!--책 수정하기 모달창 끝--------------------------------------------------------------------------->

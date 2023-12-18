@@ -1,7 +1,5 @@
 package com.spring.author.dto;
 
-import com.spring.author.domain.Users;
-
 import jakarta.validation.constraints.NotEmpty;
 import jakarta.validation.constraints.NotNull;
 import lombok.Getter;
@@ -20,8 +18,11 @@ public class AddBookRequest {
 	@NotEmpty(message = "리뷰를 입력해주세요.")
 	private String review_content;
 	
-	@NotNull
-	private Boolean is_public;
+	@NotEmpty
+	private String thumbnail;
+	
+	@NotEmpty
+	private String isbn;
 	
 	private String userId;
 	

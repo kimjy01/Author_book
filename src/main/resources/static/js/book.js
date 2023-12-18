@@ -1,3 +1,10 @@
+let book_name;
+let author_name;
+let isbn;
+let user_id;
+let thumbnail;
+let review_content;
+
 $(document).ready(function () {
 	
 	//1️⃣책의 선반이 자동으로 생기게 js 코드
@@ -44,27 +51,90 @@ $(document).ready(function () {
 	//-------------------------------------------------------------------------
 	
 	//3️⃣textarea 늘리기 코드
-	let textarea = document.getElementById('writeReview');
+	let textareas = document.querySelectorAll('.writeReview');
 	
-	textarea.addEventListener('input', function() {
-	    //스크롤 높이를 임시로 0으로 설정
-	    this.style.height = '0';
-	    // 스크롤 높이를 요소의 스크롤 높이에 맞게 늘리기
-	    this.style.height = `${this.scrollHeight/1.5}%`;
-	    console.log(this.scrollHeight);
+	textareas.forEach(function(textarea) {
+	    textarea.addEventListener('input', function() {
+	        // 스크롤 높이를 임시로 0으로 설정
+	        this.style.height = '0';
+	        // 스크롤 높이를 요소의 스크롤 높이에 맞게 늘리기
+	        this.style.height = `${this.scrollHeight / 1.5}px`; // px 단위 추가
+	        console.log(this.scrollHeight);
+	    });
 	});
 	
 	
 	//4️⃣책 정보 보기 모달창
-	let popModal = document.getElementById('popModal');
+	let popModals = document.querySelectorAll('#popModal');
 	let modal = document.getElementById('modal');
 	let modalClose = document.getElementById('modalClose');
+	let del_book = document.querySelector('.delete');
 	
-	popModal.onclick = function() {
-	    modal.style.display = 'block';
-	}
+	popModals.forEach(function(popModal) {
+		
+	    popModal.onclick = function() {
+	        
+	        book_name = $(this).data("title");
+	        author_name = $(this).data("author");
+	        thumbnail = $(this).data("thumbnail");
+	        isbn = $(this).data("isbn");
+	        review_content = $(this).data("review");
+	        user_id = $(this).data("userid");
+	        
+	        id = $(this).data("id");
+	        
+	        $(".modal_author").text(book_name);
+	        $(".bookAuthorName").text(author_name);
+	        $(".bookReview").text(review_content);
+
+	        modal.style.display = 'block';
+			
+			del_book.onclick = function() {
+				location.href='/book/delete?id=' + id;
+			}
+	        
+	    };
+	});
 	  modalClose.onclick = function() {
 	    modal.style.display = 'none';
 	}
+	
+	//5 책 정보 수정 모달창
+	let upModalbtn = document.querySelector('.update');
+	let upmodal = document.getElementById('upModal');
+	let upmodalClose = document.getElementById('upModalClose');
+	
+	upModalbtn.onclick = function() {
+		
+		let info = document.querySelectorAll('.info');
+		
+		info[0].value = book_name;
+		info[1].value = author_name;
+		info[2].value = thumbnail;
+		info[3].value = isbn;
+		info[4].value = review_content;
+		info[5].value = user_id;
+		
+		let book = document.querySelector('.bookId');
+		book.value = id;
+		
+		$('#upForm').attr('action', 'book/update?id='+id);
+		
+	    upmodal.style.display = 'block';
+	    
+	}
+	  upmodalClose.onclick = function() {
+	    upmodal.style.display = 'none';
+	}
 	//-------------------------------------------------------------------------
+	
 });
+
+function openNewWindow() {
+    var newWindow = window.open('bookSearch', 'Popup', 'width=800, height=500');
+    
+    // 팝업이 차단되었을 경우에 대한 처리
+    if (!newWindow || newWindow.closed || typeof newWindow.closed == 'undefined') {
+        alert('팝업이 차단되었습니다. 팝업 차단을 해제해주세요.');
+    }
+}

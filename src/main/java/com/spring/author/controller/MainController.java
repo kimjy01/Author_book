@@ -15,6 +15,7 @@ import com.spring.author.domain.ChallengeUsers;
 import com.spring.author.domain.PrincipalDetails;
 import com.spring.author.domain.Users;
 import com.spring.author.repository.UserRepository;
+import com.spring.author.service.BookService;
 import com.spring.author.service.UserDetailService;
 
 import lombok.RequiredArgsConstructor;
@@ -25,6 +26,9 @@ public class MainController {
 	
 	@Autowired
 	private final UserDetailService userService;
+	
+	@Autowired
+	private final BookService bookService;
 
 	@GetMapping("/")
 	public String main() {
@@ -44,21 +48,6 @@ public class MainController {
 		model.addAttribute("user", user);
 		
 		return "home";
-	}
-	
-	@GetMapping("/book")
-	public String book(@AuthenticationPrincipal PrincipalDetails principalDetails, Model model) {
-		
-		Users user = principalDetails.getUsers();
-		System.out.println(user.getEmail());
-		model.addAttribute("user", user);
-		
-		return "book";
-	}
-	
-	@GetMapping("/challenge")
-	public String challenge(@AuthenticationPrincipal PrincipalDetails principalDetails, Model model) {
-		return "challenge";
 	}
 	
 	@GetMapping("/chatList")

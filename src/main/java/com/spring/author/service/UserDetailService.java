@@ -26,9 +26,6 @@ public class UserDetailService implements UserDetailsService {
 	
 	@Autowired
 	private final UserRepository userRepository;
-	
-	@Autowired
-	private final BookReviewRepository bookRepository;
 
 	@Override
 	public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
@@ -49,7 +46,7 @@ public class UserDetailService implements UserDetailsService {
 	    return 0L;
 	}
 	
-	// 사용자의 도서 리뷰 개수 조회
+	// 사용자의 챌린지 개수 조회
 		public Long getChallengeCnt(String email) {
 		    Users user = userRepository.findByEmail(email).orElse(null);
 		    if (user != null) {	

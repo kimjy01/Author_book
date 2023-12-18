@@ -126,12 +126,17 @@ td {
 .challengeList { /* 챌린지 내용 부분 전체 div*/
     font-size: 20px;
     width: 48%;
-    margin: 0 auto;
+    margin-left: 45px;
 }
 
 .challenges { /* 챌린지 내용 */
+	width: 370px;
     clear:both;
     margin-bottom: 10%;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
 }
 
 .challenges img { /* 챌린지 내용 체크박스 이미지 */
@@ -161,6 +166,22 @@ td {
     border-radius: 4px;
     cursor: pointer;
 } 
+
+.detail {
+	font-size: 18px;
+}
+
+.sub_btn {
+    width: 60px;
+    cursor: pointer;
+    border-radius: 25%;
+    height: 30px;
+    line-height: 30px;
+    margin-left: 6%;
+    background-color: #badac7;
+    text-align: center;
+    font-size: 14px;
+}
 /*챌린지 부분 끝-------------------------------------------------------------------------*/
 
 /*5️⃣어서 챌린지 참여하기 css*/

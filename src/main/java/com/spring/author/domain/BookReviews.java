@@ -6,12 +6,13 @@ import java.util.List;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
+import lombok.Data;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 
 @Entity
 @Builder
-@Getter
+@Data
 @NoArgsConstructor
 @AllArgsConstructor
 public class BookReviews {
@@ -27,11 +28,14 @@ public class BookReviews {
 	@Column(name = "author_name")
     private String author_name;
 	
+	@Column(name="thumbnail")
+	private String thumbnail;
+	
+	@Column(name="isbn")
+	private String isbn;
+	
 	@Column(name = "review_content")
     private String review_content;
-	
-	@Column(name = "is_public")
-    private boolean is_public;
 
 	@ManyToOne
 	@JoinColumn(name = "user_id")
