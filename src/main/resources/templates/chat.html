@@ -71,18 +71,22 @@
 </head>
 <body>
 	<div id="container" class="container">
-		<h1>[[${roomName}]] 작가님의 채팅방</h1>
+		<div class="title_wrap">
+			<h1>[[${roomName}]] 작가님의 채팅방</h1>
+			<a class="room_out" href="/"> 방 나가기 </a>
+		</div>
 		<input type="hidden" id="sessionId" value="">
 		<input type="hidden" id="roomNumber" th:value="${roomNumber}">
-		
+		<hr>
 		<div id="chating" class="chating">
 		</div>
+		<hr>
 		<div id="yourMsg">
 			<table class="inputTable">
 				<tr>
 					<th>메시지</th>
 					<th><input id="chatting" placeholder="보내실 메시지를 입력하세요."></th>
-					<th><button onclick="send()" id="sendBtn">보내기</button></th>
+					<th><img src="../static/image/send.png" onclick="send()" id="sendBtn"></img></th>
 				</tr>
 			</table>
 		</div>
