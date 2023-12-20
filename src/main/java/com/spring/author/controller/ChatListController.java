@@ -3,6 +3,7 @@ package com.spring.author.controller;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -29,8 +30,10 @@ import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.spring.author.domain.AuthorBooks;
 import com.spring.author.domain.Authors;
+import com.spring.author.domain.ChatRooms;
 import com.spring.author.service.AuthorBookService;
 import com.spring.author.service.AuthorService;
+import com.spring.author.service.ChatRoomService;
 import com.spring.author.service.SubscriptionService;
 import com.spring.author.service.UserDetailService;
 import com.spring.author.service.UserService;
@@ -55,6 +58,9 @@ public class ChatListController {
 	@Autowired
 	private final SubscriptionService subscriptionService;
 	
+	@Autowired
+	private final ChatRoomService chatRoomService;
+	
 	@GetMapping("/chatList")
 	public String chatList(@AuthenticationPrincipal PrincipalDetails principalDetails, Model model) {
 		
@@ -70,6 +76,8 @@ public class ChatListController {
         
         List<Authors> subscribedAuthors = authorService.getSubscribedAuthorsByUser(user);
         model.addAttribute("subscribedAuthors", subscribedAuthors);
+        
+        model.addAttribute("chatRoomList", chatRoomService.getChatRooms());
 		
 		return "chat_list";
 	}

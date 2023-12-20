@@ -75,6 +75,11 @@ function subscribeToAuthor(userId, authorId) {
     });
 }
 
+function redirectToChat(chatRoomId) {
+    var url = 'chat/' + chatRoomId;
+    location.href = url;
+}
+
 function unsubscribeFromAuthor(userId, authorId) {
     // AJAX request using jQuery
     $.ajax({

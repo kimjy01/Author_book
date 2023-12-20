@@ -9,21 +9,23 @@
 
 <div class="chat_wrap">
     <ul class="author_wrap">
-        <li class="author" th:each="author:${subscribedAuthors}">
-            <div class="profile">
-                <img src="../static/image/profile.png" alt="" class="profile_image"
-                th:data-id="${author.id}"
-               	th:data-name="${author.author_name}" th:data-info="${author.author_info}">
-                <div class="author_info sub">
-                    <p class="profile_name" th:text="${author.author_name} + ' 작가님'"></p>
-                </div>
-                <div class="unsub_btn" th:if="${author.authorEmail != user.email}" 
-                th:onclick="'unsubscribeFromAuthor(' + ${user.id} + ', ' + ${author.id} + ')'">구독 취소</div>
-            </div>
-            <hr>
-        </li>
+         <li class="author" th:each="author : ${subscribedAuthors}">
+             <div class="profile">
+                 <img src="../static/image/profile.png" alt="" class="profile_image"
+                      th:data-id="${author.id}"
+                      th:data-name="${author.author_name}" th:data-info="${author.author_info}">
+                 <div class="author_info sub" th:each="chatRoom : ${chatRoomList}" th:if="${chatRoom.chatRoomName eq author.authorEmail}" 
+                 th:onclick="'redirectToChat(' + ${chatRoom.id} + ')'">
+                     <p class="profile_name" th:text="${author.author_name} + ' 작가님'"></p>
+                 </div>
+                 <div class="unsub_btn" th:if="${author.authorEmail != user.email}"
+                      th:onclick="'unsubscribeFromAuthor(' + ${user.id} + ', ' + ${author.id} + ')'">구독 취소</div>
+             </div>
+             <hr>
+         </li>
     </ul>
 </div>
+
 
 <div class="non_title">
     <h4>아직 구독하지 않은 작가</h4>

@@ -1,5 +1,8 @@
 package com.spring.author.service;
 
+import java.util.List;
+import java.util.Optional;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -21,5 +24,14 @@ public class ChatRoomService {
 				.build();
 		
 		return chatRoomRepository.save(chatRoom);
+	}
+	
+	public List<ChatRooms> getChatRooms() {
+		
+        return chatRoomRepository.findAll();
+    }
+	
+	public Optional<ChatRooms> getChatRoomById(Long id) {
+		return chatRoomRepository.findById(id);
 	}
 }
