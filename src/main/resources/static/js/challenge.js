@@ -1,3 +1,5 @@
+var checkImage = document.getElementById("check");
+let todoId;
 
 //1️⃣달력 코드------------------------------------------------------------------------- 
 let nowMonth = new Date();  // 현재 달을 페이지를 로드한 날의 달로 초기화
@@ -29,7 +31,6 @@ function buildCalendar() {
 
         let nowColumn = nowRow.insertCell();        // 새 열을 추가하고
 
-
         let newDIV = document.createElement("p");
         newDIV.innerHTML = leftPad(nowDay.getDate());        // 추가한 열에 날짜 입력
         nowColumn.appendChild(newDIV);
@@ -41,15 +42,24 @@ function buildCalendar() {
         if (nowDay < today) {                       // 지난날인 경우
             // newDIV.className = "pastDay";
             newDIV.className = "futureDay";
-            newDIV.onclick = function () { choiceDate(this); }
+            newDIV.onclick = function () { 
+				hideAddTodo(this);
+				choiceDate(this); 
+			}
         }
         else if (nowDay.getFullYear() == today.getFullYear() && nowDay.getMonth() == today.getMonth() && nowDay.getDate() == today.getDate()) { // 오늘인 경우           
             newDIV.className = "today";
-            newDIV.onclick = function () { choiceDate(this); }
+            newDIV.onclick = function () { 
+				hideAddTodo(this);
+				choiceDate(this); 
+			}
         }
         else {                                      // 미래인 경우
             newDIV.className = "futureDay";
-            newDIV.onclick = function () { choiceDate(this); }
+            newDIV.onclick = function () { 
+				hideAddTodo(this);
+				choiceDate(this); 
+			}
         }
     }
 }
@@ -65,12 +75,57 @@ function nextCalendar() {
     buildCalendar();    // 달력 다시 생성
 }
 
+function hideAddTodo(newDIV) {
+	
+	let click_year = document.getElementById("calYear").innerText;
+    let click_mon = document.getElementById("calMonth").innerText;
+    let click_day = newDIV.innerText
+    
+    let clickDate = `${click_year}-${click_mon}-${click_day}`;
+    let clickedDate = new Date(clickDate);
+    
+    var todayDate = new Date();
+    
+    if (clickedDate.getDate() !== todayDate.getDate() || 
+        clickedDate.getMonth() !== todayDate.getMonth() || 
+        clickedDate.getFullYear() !== todayDate.getFullYear()) {
+        // 클릭한 날짜와 현재 날짜가 다르면 "challengeAddBtn" 요소를 숨김
+        document.querySelector(".challengeAddBtn").style.display = "none";
+        
+    } else {
+        // 클릭한 날짜와 현재 날짜가 같으면 "challengeAddBtn" 요소를 보임
+        document.querySelector(".challengeAddBtn").style.display = "block";
+        
+    }
+	
+}
+
 // 날짜 선택
 function choiceDate(newDIV) {
     if (document.getElementsByClassName("choiceDay")[0]) {                              // 기존에 선택한 날짜가 있으면
         document.getElementsByClassName("choiceDay")[0].classList.remove("choiceDay");  // 해당 날짜의 "choiceDay" class 제거
+        
+        let year = document.getElementById("calYear").innerText;
+        let mon = document.getElementById("calMonth").innerText;
+        let day = newDIV.innerText
+	    
+	    let clickDate = `${year}-${mon}-${day}`;
+	    
+	    // AJAX 요청
+	    $.ajax({
+	        type: 'GET',
+	        url: `challenge?date=` + clickDate,
+	        success: function(response) {
+	            var todoListContent = $(response).find('.challengeList').html();
+                $('.challengeList').html(todoListContent);
+	        },
+	        error: function(error) {
+	            console.error('Error toggling check:', error);
+	        }
+	    });
+
     }
-    newDIV.classList.add("choiceDay");           // 선택된 날짜에 "choiceDay" class 추가
+    newDIV.classList.add("choiceDay");     // 선택된 날짜에 "choiceDay" class 추가
 }
 
 // input값이 한자리 숫자인 경우 앞에 '0' 붙혀주는 함수
@@ -159,6 +214,8 @@ function changeCheck(img, todoId) {
     let src = img.src;
     let name = src.substring(src.lastIndexOf('/')+1, src.length + 1);
     
+    todoId = todoId;
+    
     // AJAX 요청
     $.ajax({
         type: 'POST',
@@ -180,6 +237,7 @@ function changeCheck(img, todoId) {
     });
  
 }
+
 
 function deleteTodo() {
     var todoId = event.target.getAttribute('data-todo-id');

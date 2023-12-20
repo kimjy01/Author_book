@@ -1,12 +1,18 @@
 $(document).ready(function() {
     // 페이지 로드 시 세션 스토리지에서 저장된 탭을 가져와서 활성화
     var activeTab = sessionStorage.getItem('activeTab');
-    if (activeTab) {
-        $('.nav-bar__item').removeClass('active');
-        $('.nav-bar__item.' + activeTab).addClass('active');
-        
-        loadContent(activeTab); // 해당 탭의 콘텐츠를 로드하는 함수 호출
+   if (!activeTab) {
+        // 세션 스토리지에 저장된 값이 없는 경우 기본값으로 'home'을 설정
+        activeTab = 'home';
+        sessionStorage.setItem('activeTab', activeTab);
     }
+
+    // 활성 탭 설정
+    $('.nav-bar__item').removeClass('active');
+    $('.nav-bar__item.' + activeTab).addClass('active');
+
+    // 해당 탭의 콘텐츠 로드
+    loadContent(activeTab);
 
     // 탭 클릭 시 처리
     $('.nav-bar__item').click(function() {

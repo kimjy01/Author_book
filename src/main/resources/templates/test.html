@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+<body>
+Good!
+<div class="author_image_wrap">
+	<div class="author_image" th:each="book : ${bookList}">
+		<img th:src="${book.book_image}" alt="">
+	</div>
+</div>
+</body>
+</html>

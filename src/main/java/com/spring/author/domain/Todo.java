@@ -31,9 +31,8 @@ public class Todo {
     private String todo_content;
 	
 	@Column(name = "today_date")
-	@CreatedDate
 	@DateTimeFormat(pattern = "yyyy-MM-dd")
-    private LocalDate today_date;
+    private LocalDate todayDate;
 	
 	@Column(name = "is_success")
 	private boolean is_success;
@@ -46,7 +45,7 @@ public class Todo {
         return Todo.builder()
                 .id(this.id)
                 .todo_content(this.todo_content)
-                .today_date(this.today_date)
+                .todayDate(this.todayDate)
                 .is_success(!this.is_success)
                 .user(this.user)
                 .build();

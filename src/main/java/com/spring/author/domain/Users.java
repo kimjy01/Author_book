@@ -8,12 +8,13 @@ import org.hibernate.annotations.ColumnDefault;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
+import lombok.Data;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 
 @Entity
 @Builder
-@Getter
+@Data
 @NoArgsConstructor
 @AllArgsConstructor
 public class Users {
@@ -36,7 +37,7 @@ public class Users {
     private String nickname;
 
     @Column(name = "rate")
-    @ColumnDefault("0")
+    @ColumnDefault("1")
     private int rate;
 
     @Column(name = "role")
@@ -46,6 +47,10 @@ public class Users {
     @ManyToOne
     @JoinColumn(name = "author_book_id")
     private AuthorBooks authorBook;
+    
+    @ManyToOne
+    @JoinColumn(name = "author_id")
+    private Authors author; 
 
     @OneToMany(mappedBy = "user", cascade = CascadeType.ALL, orphanRemoval = true)
     private List<BookReviews> bookReviews = new ArrayList<>();
@@ -65,4 +70,5 @@ public class Users {
 
     @OneToMany(mappedBy = "user", cascade = CascadeType.ALL, orphanRemoval = true)
     private List<ChallengeUsers> challengeUsers = new ArrayList<>();
+    
 }

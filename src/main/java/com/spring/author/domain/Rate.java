@@ -1,32 +1,30 @@
 package com.spring.author.domain;
 
-import java.util.List;
-
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
-import lombok.Getter;
+import lombok.Data;
 import lombok.NoArgsConstructor;
 
 @Entity
 @Builder
-@Getter
+@Data
 @NoArgsConstructor
 @AllArgsConstructor
-public class AuthorBooks {
+public class Rate {
 
 	@Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name = "id", updatable = false)
     private Long id;
-	
-	@Column(name = "book_title")
-	private String book_title;
-	
-	@Column(name = "book_image")
-    private String book_image;
 
-	@ManyToOne
-    @JoinColumn(name = "authorsId")
-    private Authors authors;
+	@Column(name = "rate")
+    private int rate;
+	
+	@Column(name = "rate_info")
+    private String rate_info;
+	
+	@Column(name="rate_image")
+	private String rate_image;
+
 }

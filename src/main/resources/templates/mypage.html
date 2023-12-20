@@ -1,6 +1,7 @@
 <head>
     <link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet">
     <link rel="stylesheet" type="text/css" href="../static/css/mypage.css">
+    <script src="../static/js/mypage.js"></script>
 </head>
 <div class="profile">
     <div class="profile_wrap">
@@ -13,7 +14,7 @@
             </div>
             <div class="profile_info">
                 <span>
-                	<p>서북이 단계</p>
+                	<p>독서 단계</p>
                 	<p>[[${user.rate}]]</p>
                 </span>
             </div>
@@ -21,7 +22,7 @@
         <div th:if="${user.role == 'AUTHOR'}" class="writer">
 	        <div>작가</div>
 	    </div>
-	    <div th:if="${user.role == 'READER'}" class="reader">
+	    <div th:if="${user.role == 'READER'}" onclick="location.href='changeRole'" class="reader">
 	        <div>독자</div>
 	    </div>
     </div>
@@ -40,5 +41,85 @@
 
 <hr class="separate">
 
+<div th:if="${user.role == 'AUTHOR'}" class="author_info">
+	<h3>작가님 한 줄 소개</h3>
+	<div class="wrap_author_modal" th:if="${author.author_info == null}">
+	    <p>소개가 없습니다. 독자님들을 위해 등록해주세요.</p>
+	    <div class="sub_btn" id="popAddModal" th:data-id="${author.id}">등록</div>
+	</div>
+	
+	<div class="wrap_author_modal" th:if="${author.author_info != null}">
+	    <p th:text="${author.author_info}"></p>
+	    <div class="sub_btn update" id="popAddModal" th:data-id="${author.id}" th:data-info=${author.author_info}>수정</div>
+	</div>
+</div>
+<div th:if="${user.role == 'AUTHOR'}" class="author_info">
+	<h3>작가님 도서 목록</h3>
+	<div class="wrap_author_modal">
+		<p>작가님의 도서를 등록해주세요.</p>
+		<div class="sub_btn" th:onclick="'openNewWindow(' + ${author.id} + ')'">등록</div>
+	</div>
+	<div class="author_image_wrap">
+		<div class="author_image" th:each="book : ${bookList}">
+			<img th:src="${book.book_image}" alt="">
+		</div>
+	</div>
+</div>
+
 <button type="button" class="btn_logout" onclick="location.href='logout'"> 로그아웃 </button>
 
+<!--책 추가하기 모달창-->
+<div id="addModal" class="addModal">
+    <div class="addModal-content">
+        <div class="title_wrap">
+            <p class="modal_author">소개 추가하기</p>
+            <p class="popClose">
+                <img src="../static/image/closeBtn.png" alt="" id="addModalClose">
+            </p>
+        </div>
+
+        <!--책 정보 Form-->
+        <form method="post" class="infoForm" id="addForm">
+            <div class="bookInfo">
+                <div class="bookTitle">
+                    <p class="bookName">한 줄 소개: </p>
+                    <p class="bookNameInput">
+                        <input type="text" id="author_info" name="author_info">
+                    </p>
+                </div>
+            </div>
+            <div class="submitPart">
+                <button type="submit" class="submitBtn">확인</button>
+            </div>
+        </form>
+    </div>
+</div>
+
+<!--책 수정하기 모달창-->
+<div id="upModal" class="addModal">
+    <div class="addModal-content">
+        <div class="title_wrap">
+            <p class="modal_author">책 수정하기</p>
+            <p class="popClose">
+                <img src="../static/image/closeBtn.png" alt="" id="upModalClose">
+            </p>
+        </div>
+
+        <!--책 정보 Form-->
+        <form method="post" class="infoForm" id="upForm">
+        	<input type="hidden" name="bookId" class="bookId"/>
+            <div class="bookInfo">
+                <div class="bookTitle">
+                    <p class="bookName">한 줄 소개: </p>
+                    <p class="bookNameInput">
+                        <input type="text" id="author_info_up" class="info" name="author_info" >
+                    </p>
+                </div>
+            </div>
+            <div class="submitPart">
+                <button type="submit" class="submitBtn">확인</button>
+            </div>
+        </form>
+    </div>
+</div>
+<!--책 수정하기 모달창 끝--------------------------------------------------------------------------->

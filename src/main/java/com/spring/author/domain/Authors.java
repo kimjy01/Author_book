@@ -5,12 +5,13 @@ import java.util.List;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
+import lombok.Data;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 
 @Entity
 @Builder
-@Getter
+@Data
 @NoArgsConstructor
 @AllArgsConstructor
 public class Authors {
@@ -25,6 +26,9 @@ public class Authors {
 	
 	@Column(name = "author_info")
     private String author_info;
+	
+	@Column(name = "authorEmail")
+	private String authorEmail;
 
 	@OneToMany(mappedBy = "authors")
     private List<AuthorBooks> authorBooks;

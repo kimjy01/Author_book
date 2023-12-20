@@ -5,7 +5,7 @@ $(document).ready(function() {
   
       if (textLength > 8) {
         // 글자 수가 8을 넘어가면 말줄임표를 추가
-        const truncatedText = text.slice(0, 8) + '...';
+        const truncatedText = text.slice(0, 8);
         $(this).text(truncatedText);
       }
   

@@ -1,6 +1,10 @@
 package com.spring.author.controller;
 
+import java.time.LocalDate;
+import java.util.HashMap;
+import java.util.Iterator;
 import java.util.List;
+import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpHeaders;
@@ -33,15 +37,27 @@ public class TodoController {
 	private TodoService todoService;
 	
 	@GetMapping("/challenge")
-	public String challenge(@AuthenticationPrincipal PrincipalDetails principalDetails, Model model) {
-		
-		Users user = principalDetails.getUsers();
-		model.addAttribute("user", user);
-		
-		List<Todo> todos = todoService.getTodoByUserId(user.getId());
-		model.addAttribute("list", todos);
-		
-		return "challenge";
+	public String challenge(@RequestParam(required = false) String date,
+	                        @AuthenticationPrincipal PrincipalDetails principalDetails,
+	                        Model model) {
+	    
+	    Users user = principalDetails.getUsers();
+	    model.addAttribute("user", user);
+
+	    LocalDate selectedDate;
+	    if (date != null && !date.isEmpty()) {
+	        selectedDate = LocalDate.parse(date);
+	    } else {
+	        // 날짜 파라미터가 주어지지 않은 경우 현재 날짜를 기본값으로 사용
+	        selectedDate = LocalDate.now();
+	    }
+
+	    System.out.println(selectedDate);
+
+	    List<Todo> todos = todoService.getTodoByUserIdAndDateAfter(user.getId(), selectedDate);
+	    model.addAttribute("list", todos);
+
+	    return "challenge";
 	}
 	
 	@PostMapping("/todo/add")

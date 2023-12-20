@@ -34,14 +34,19 @@ public class BookService {
 		Users user = userRepository.findByEmail(dto.getUserId())
 				.orElseThrow(() -> new EntityNotFoundException("사용자를 찾을 수 없습니다."));
 		
-		return bookRepository.save(BookReviews.builder()
-				.book_name(dto.getBook_name())
-				.author_name(dto.getAuthor_name())
-				.thumbnail(dto.getThumbnail())
-				.isbn(dto.getIsbn())
-				.review_content(dto.getReview_content())
-				.user(user)
-				.build()).getId();
+		BookReviews savedBook = bookRepository.save(BookReviews.builder()
+	            .book_name(dto.getBook_name())
+	            .author_name(dto.getAuthor_name())
+	            .thumbnail(dto.getThumbnail())
+	            .isbn(dto.getIsbn())
+	            .review_content(dto.getReview_content())
+	            .user(user)
+	            .build());
+
+	    // 사용자의 rate 업데이트
+	    updateRateByUserId(user.getId());
+
+	    return savedBook.getId();
 	}
 	
 	public List<BookReviews> bookList() {
@@ -85,6 +90,24 @@ public class BookService {
 
 	    bookRepository.save(book);
 	}
+	
+	public void updateRateByUserId(Long userId) {
+	    // 사용자의 책 리뷰 목록을 가져옴
+	    List<BookReviews> bookReviews = bookRepository.findByUser_Id(userId);
 
+	    // 리뷰 개수에 따라 rate 계산
+	    int reviewCount = bookReviews.size();
+	    int newRate = (reviewCount / 10) + 1; // 10개마다 1씩 증가
+
+	    // 현재 저장된 사용자 정보를 가져옴
+	    Users user = userRepository.findById(userId)
+	            .orElseThrow(() -> new EntityNotFoundException("사용자를 찾을 수 없습니다."));
+
+	    // 현재 rate와 새로 계산한 rate가 다를 경우에만 업데이트
+	    if (user.getRate() != newRate) {
+	        user.setRate(newRate);
+	        userRepository.save(user);
+	    }
+	}
 
 }

@@ -155,7 +155,19 @@ a {
 
 .map {
     width: 100%;
-    height: 90%;
-    border: 1px solid #98C5AB;
-    border-radius: 4%;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+}
+
+.best_book {
+	width: 20%;
+	height: 150px;
+	border: 1px solid;
+	margin-bottom: 20px;
+}
+
+.best_book > img {
+	width: 100%;
+	height: 100%;
 }

@@ -17,25 +17,45 @@ $(document).ready(function () {
     });
 
     
-    const closeButton = document.getElementById('closePopup');
-    const openModalBtn = document.getElementById('open-modal');
-    const modal = document.getElementById('modal');
+    let closeButton = document.getElementById('closePopup');
+    let openModalBtn = document.querySelectorAll('.profile_image')
+    let modal = document.getElementById('modal');
 
-    if (closeButton && openModalBtn && modal) {
-        closeButton.addEventListener('click', () => {
-            modal.style.display = 'none';
-        });
-
-        openModalBtn.addEventListener('click', function (event) {
-            event.preventDefault();
-            modal.style.display = 'block';
-        });
-
-        window.addEventListener('click', function (event) {
-            if (event.target === modal) {
-            modal.style.display = 'none';
-            }
-        });
-    }
+    openModalBtn.forEach(function(popModal) {
+		
+	    popModal.onclick = function() {
+			let authorId = $(this).data('id');
+			let author_name = $(this).data('name');
+			let author_info = $(this).data('info');
+			
+			$('.modal_author').text(author_name + '작가님');
+		    $('.author_intro').text(author_info);
+		    
+		    $.ajax({
+				url:"author/profile?id="+authorId,
+				type : "post",
+				success : function(data) {
+					var container = $("#authorImageContainer");
+					container.empty();
+			
+			        var imageUrls = Object.values(data);
+				
+		            for (var i = 0; i < imageUrls.length; i++) {
+		              	var imageElement = $('<div class="author_image"><img src="' + imageUrls[i] + '" alt=""></div>');
+            			container.append(imageElement);
+		            }
+			        
+			        modal.style.display = 'block';
+				},
+				error : function() {
+					alert("error");
+				}
+			});
+			
+	    };
+	});
+	  closeButton.onclick = function() {
+	    modal.style.display = 'none';
+	}
 
 });

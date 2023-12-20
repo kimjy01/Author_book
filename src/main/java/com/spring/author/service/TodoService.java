@@ -40,14 +40,14 @@ public class TodoService {
 		
 		return todoRepository.save(Todo.builder()
 				.todo_content(dto.getTodo_content())
-				.today_date(LocalDate.now())
+				.todayDate(LocalDate.now())
 				.user(user)
 				.build()).getId();
 	}
 	
-	public List<Todo> getTodoByUserId(Long userId) {
-        return todoRepository.findByUser_Id(userId);
-    }
+	public List<Todo> getTodoByUserIdAndDateAfter(Long userId, LocalDate today_date) {
+	    return todoRepository.findByUser_IdAndTodayDate(userId, today_date);
+	}
 	
 	public Todo toggleCheck(Long todoId) {
         Todo originalTodo = todoRepository.findById(todoId)

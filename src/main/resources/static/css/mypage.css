@@ -116,3 +116,365 @@ p {
 	text-align: center;
 	line-height: 30px;
 }
+
+/*4️⃣책 추가하기 모달창*/
+.addModal { /*모달창 상위 div*/
+    animation: fadeInDown 1s;
+    width: 500px;
+    height: 100%;
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    padding: 0;
+    background-color: rgba(217, 217, 217, 0.6);
+    z-index: 999;
+    margin: 0 auto;
+}
+
+.addModal-content { /*모달창 컨텐츠 div*/
+    border-radius: 4px;
+    background-color: white;
+    border: 2px solid gray;
+    position: absolute;
+    top: 18%;
+    left: 0;
+    right: 0;
+    width: 77%; /*350px*/
+    height: 500px;
+    margin: 0 auto;
+    padding: 0;
+    /* text-align: center; */
+    z-index: 6;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.title_wrap { /*모달창 제목 부분 div*/
+    width: 100%;
+    height: 13%;
+    background-color: #DDEFE4;
+    border-bottom: 2px solid gray;
+}
+
+.modal_author { /*모달창 제목*/
+    color: black;
+    font-size: 15px;
+    font-weight: bold;
+    margin-top: 20px;
+    float: left;
+    margin-left: 15px;
+}
+
+.popClose { /*모달창 제목 옆 X 버튼 p tag*/
+    float: right;
+    margin-top: 20px;
+    margin-right: 10px;
+    font-size: 25px;
+}
+
+.popClose img { /*모달창 제목 옆 X 버튼 이미지*/
+    height: 25px;
+    cursor: pointer;
+}
+
+.infoForm { /* 책 정보 제출하기 Form*/
+    height: 100%;
+    margin: 0;
+}
+
+.bookInfo { /*정보 입력해야 하는 부분 div*/
+    width: 85%;
+    height: 80%;
+    margin: 0 auto;
+    box-sizing: border-box;
+}
+
+.bookTitle { /*책 이름 쓰는 줄 div*/
+    margin-top: 5%;
+    height: 13%;
+    /* padding-top: 5%; */
+}
+
+.bookName { /*"책 제목:" 이 부분 p 태그*/
+    /* border: 1px solid purple; */
+    float: left;
+    margin-top: 5%;
+    font-size: 17px;
+    /* margin-top: 10%; */
+    /* margin-left: 5%; */ /*✔보류*/
+}
+
+.authorName { /*"작가:" 이 부분 p 태그*/
+    float: left;
+    margin-top: 1%;
+    font-size: 17px;
+}
+
+.bookNameInput, .authorNameInput { /*책 제목이랑 작가이름 작성 부분 p tag*/
+    height: 100%;
+}
+
+.bookNameInput input { /*책 이름 쓰는 p 태그 안 input*/
+    border: 1px solid #D4D4D4;
+    outline: none;
+    height: 50%;
+    margin-top: 4%;
+    width: 70%;
+    margin-left: 8%;
+    font-family: 'GmarketSansMedium';
+    font-size: 15px;
+}
+
+.authorNameInput input { /*작가 이름 쓰는 p 태그 안 input*/
+    border: 1px solid #D4D4D4;
+    outline: none;
+    height: 50%;
+    width: 70%;
+    margin-left: 14%;
+    font-family: 'GmarketSansMedium';
+    font-size: 15px;
+}
+
+.bookAuthor { /*작가 이름 쓰는 줄 div*/
+    height: 13%;
+    clear: both;
+    margin: 0;
+}
+
+/*보류*/
+/* .authorName { 
+    float: left;
+    margin-top: 5%;
+    font-size: 17px;
+} */
+
+.reviewPart { /*느낀점 쓰는 줄 dov*/
+    clear: both;
+    height: 42%;
+}
+
+.reviewTitle { /*"느낀점:" 이 부분 p tag*/
+    margin: 0;
+    font-size: 17px;
+}
+
+.writeReview { /*느낀점 쓰는 textarea창*/
+    width: 96%;
+    max-height: 100%;
+    overflow-y: auto;
+    border: 1px solid #D4D4D4;
+    resize: none;
+    margin-top: 3%;
+    outline: none;
+    font-family: 'GmarketSansMedium';
+    word-break: break-all;
+    font-size: 14px;
+}
+
+.submitPart { /*하단 부분(공유 체크박스, 확인 버튼 div*/
+    width: 100%;
+    margin: 0;
+}
+
+.submitBtn { /*확인 버튼*/
+    width: 33%;
+    height: 30px;
+    font-family: 'GmarketSansMedium';
+    padding-top: 5px;
+    float: right;
+    margin-right: 5%;
+    font-size: 14px;
+    background-color: #CEE8D9;
+    border: 2px solid gray;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+.check { /*체크박스 부분 div*/
+    clear: both;
+    margin-left: 3%;
+    float: left;
+}
+
+.check input { /*checkbox input*/
+    zoom: 1.3;
+    accent-color: black;
+    margin-right: 5px;
+    cursor: pointer;
+}
+
+.share { /*"모두에게 공유합니다" 이 부분 p tag*/
+    float: right;
+    margin-top: 4px;
+    font-size: 13px;
+}
+/*책 추가하기 모달창-------------------------------------------------------------------------*/
+
+/*5️⃣책 정보 보기 모달창 */
+/*※ 책 추가하기랑 클래스 겹쳐써서 이 부분에 따로 다 있지 않음.*/
+.Modal-content { /*모달창 상위 div*/
+    border-radius: 4px;
+    background-color: white;
+    border: 2px solid gray;
+    position: absolute;
+    top: 18%;
+    left: 0;
+    right: 0;
+    width: 77%; /*350px*/
+    height: 500px;
+    margin: 0 auto;
+    padding: 0;
+    /* text-align: center; */
+    z-index: 6;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    overflow-y: auto;
+}
+
+.myReview { /*나의 느낀점 부분 div*/
+    clear: both;
+    /* height: 42%; */
+    margin-top: 6%;
+}
+
+.myReviewTitle { /*"나의 느낀점: " 이 부분 p tag*/
+    margin: 0;
+    /* float: left; */
+    font-size: 17px;
+}
+
+.bookReview { /*느낀점 내용*/
+    width: 96%;
+    min-height: 30px;
+    /* max-height: 100%; */
+    /* overflow-y: auto; */
+    border: 1px solid #D4D4D4;
+    resize: none;
+    margin-top: 3%;
+    outline: none;
+    font-family: 'GmarketSansMedium';
+    word-break: break-all;
+    font-size: 14px;
+    padding: 4px;
+}
+
+.otherReview { /*타인의 기록 부분 div*/
+    clear: both;
+    /* height: 42%; */
+    margin-top: 10%;
+}
+
+.otherReviewTitle { /*"타인의 기록:" 이부분 p tag*/
+    margin: 0;
+    /* float: left; */
+    font-size: 17px;
+}
+
+.otherbookReview { /*타인의 느낀점 내용*/
+    width: 96%;
+    min-height: 30px;
+    /* max-height: 100%; */
+    /* overflow-y: auto; */
+    border: 1px solid #D4D4D4;
+    resize: none;
+    margin-top: 3%;
+    outline: none;
+    font-family: 'GmarketSansMedium';
+    word-break: break-all;
+    font-size: 14px;
+    padding: 4px;
+}
+
+.bookAuthorName { /*작가 이름*/
+    border: 1px solid #D4D4D4;
+    outline: none;
+    margin-top: 4%;
+    margin-right: 1%;
+    width: 78%;
+    font-family: 'GmarketSansMedium';
+    font-size: 15px;
+    float: right;
+    overflow-x: auto;
+    word-break: break-all;
+    padding: 3px;
+}
+
+.btn_wrap {
+	display: flex;
+	justify-content: space-evenly;
+	margin-bottom: 30px;
+}
+
+.book_btn {
+	width: 40%;
+    height: 30px;
+    border-radius: 10px;
+    background: #ffffff;
+    font-family: 'GmarketSansMedium';
+    color: #000000;
+    border: 1px solid #98C5AB;
+    margin-top: 5%;
+    text-align: center;
+    line-height: 30px;
+    cursor: pointer;
+}
+
+.book_btn:hover {
+	background-color: rgba(116, 252, 175, 0.8);
+}
+
+.sub_btn {
+    width: 60px;
+    cursor: pointer;
+    border-radius: 25%;
+    height: 30px;
+    line-height: 30px;
+    margin-left: 6%;
+    background-color: #badac7;
+    text-align: center;
+    font-size: 14px;
+}
+
+.author_info {
+	width: 90%;
+}
+
+.wrap_author_modal {
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+}
+
+.author_image_wrap {
+	margin-top: 20px;
+	display: flex;
+	flex-wrap: wrap;
+}
+
+.author_image {
+	width: 100px;
+	height: 150px;
+}
+
+.author_image > img {
+	width: 100%;
+	height: 100%;
+}
+
+/*책 정보 보기 모달창 끝-------------------------------------------------------------------------*/
+
+/*키프레임*/
+@keyframes fadeInDown {
+    0% {
+        opacity: 0;
+        transform: translate3d(0, -10%, 0);
+    }
+    to {
+        opacity: 1;
+        transform: translateZ(0);
+    }
+}

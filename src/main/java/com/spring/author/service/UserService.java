@@ -25,6 +25,7 @@ public class UserService {
 				.name(dto.getName())
 				.email(dto.getEmail())
 				.password(bCryptPasswordEncoder.encode(dto.getPassword()))
+				.rate(1)
 				.role("READER")
 				.build()).getId();
 	}

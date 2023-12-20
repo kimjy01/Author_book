@@ -9,34 +9,15 @@
 
 <div class="chat_wrap">
     <ul class="author_wrap">
-        <li class="author">
+        <li class="author" th:each="author:${subscribedAuthors}">
             <div class="profile">
-                <img src="" alt="" class="profile_image" id="open-modal">
+                <img src="../static/image/profile.png" alt="" class="profile_image"
+                th:data-id="${author.id}"
+               	th:data-name="${author.author_name}" th:data-info="${author.author_info}">
                 <div class="author_info sub">
-                    <p class="profile_name">사용자 작가님</p>
+                    <p class="profile_name" th:text="${author.author_name} + ' 작가님'"></p>
                     <p class="chatting">신작 쓰시느라 정말 수고 많으셨습니다!</p>
                 </div>
-            </div>
-            <hr>
-        </li>
-        <li class="author">
-            <div class="profile">
-                <img src="" alt="" class="profile_image">
-                <div class="author_info sub">
-                    <p class="profile_name">사용자 작가님</p>
-                    <p class="chatting">신작 쓰시느라 정말 수고 많으셨습니다!</p>
-                </div>
-            </div>
-            <hr>
-        </li>
-        <li class="author">
-            <div class="profile">
-                <img src="" alt="" class="profile_image">
-                <div class="author_info sub">
-                    <p class="profile_name">사용자 작가님</p>
-                    <p class="chatting">신작 쓰시느라 정말 수고 많으셨습니다!</p>
-                </div>
-                <div class="message_cnt">3</div>
             </div>
             <hr>
         </li>
@@ -49,33 +30,15 @@
 
 <div class="chat_wrap">
     <ul class="author_wrap">
-        <li class="author">
+        <li class="author" th:each="author : ${notSubscribedAuthors}">
             <div class="profile">
-                <img src="" alt="" class="profile_image">
+               	<img src="../static/image/profile.png" alt="" class="profile_image"
+               	th:data-id="${author.id}"
+               	th:data-name="${author.author_name}" th:data-info="${author.author_info}">
                 <div class="author_info">
-                    <p class="profile_name">사용자 작가님</p>
+                    <p class="profile_name" th:text="${author.author_name} + ' 작가님'"></p>
                 </div>
-                <div class="sub_btn">구독</div>
-            </div>
-            <hr>
-        </li>
-        <li class="author">
-            <div class="profile">
-                <img src="" alt="" class="profile_image">
-                <div class="author_info">
-                    <p class="profile_name">사용자 작가님</p>
-                </div>
-                <div class="sub_btn">구독</div>
-            </div>
-            <hr>
-        </li>
-        <li class="author">
-            <div class="profile">
-                <img src="" alt="" class="profile_image">
-                <div class="author_info">
-                    <p class="profile_name">사용자 작가님</p>
-                </div>
-                <div class="sub_btn">구독</div>
+               	<div class="sub_btn">구독</div>
             </div>
             <hr>
         </li>
@@ -89,13 +52,18 @@
         </div>
         <div class="author_info_wrap">
             <div class="author_talk">
-                <h5>작가의 한 줄 소개</h5>
+                <h4>작가의 한 줄 소개</h4>
                 <div class="author_intro">
-
+					
                 </div>
             </div>
             <div class="author_book">
-                <h5>작가의 책</h5>
+                <h4>작가의 책</h4>
+                <div class="author_image_wrap" id="authorImageContainer">
+					<div class="author_image">
+						<img src="" alt="">
+					</div>
+				</div>
             </div>
         </div>
         <div class="btn_wrap">

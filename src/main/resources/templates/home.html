@@ -11,44 +11,37 @@
 <div class="challenge_wrap">
     <div class="level_wrap">
         <div class="level_info">
-            <p class="level">집으로 돌아간 거북이</p>
-            <p class="level_total">총 100권</p>
+            <p class="level" th:text="${rate.rate_info}"></p>
+            <p class="level_total" >총 [[${bookCnt}]]권</p>
         </div>
         <div class="image_wrap">
-            <img src="" alt="" class="level_image">
+            <img th:src="${rate.rate_image}" alt="" class="level_image">
         </div>
     </div>
     <div class="list_wrap">
         <ul class="challenge_list_wrap">
-            <li class="challenge_list">오늘의 할 일</li>
-            <li class="challenge_list">오늘의 할 일</li>
+            <li th:each="item, iterStat : ${list}" class="challenge_list" th:if="${iterStat.index < 2}">
+		        <span th:text="${item.todo_content}"></span>
+		    </li>
         </ul>
     </div>
 </div>
 
 <div class="book_wrap">
     <div class="book_item_wrap">
-        <div class="book_item">
-            <p class="book_title">논어</p>
-        </div>
-        <div class="book_item">
-            <p class="book_title">인문학</p>
-        </div>
-        <div class="book_item">
-            <p class="book_title">어쩌고저쩌고</p>
-        </div>
-    </div>
-    <div class="book_btn">
-        <button></button>
+        <div class="book_item" th:each="book, iterStat : ${bookReviews}" th:limit-start="0" th:limit-end="11">
+		    <p class="book_title" th:text="${book.book_name}"></p>
+		</div>
     </div>
 </div>
 
 <div class="map_wrap">
     <div class="map_info">
-        <p>내 주변의 서점, 도서관</p>
-        <button class="map_research"></button>
+        <p>국내 베스트셀러 도서</p>
     </div>
     <div class="map" id="map">
-
+    	<div class="best_book" th:each="book : ${bookList}">
+    		<img alt="" th:src="${book.bookImageURL}">
+    	</div>
     </div>
 </div>

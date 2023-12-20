@@ -11,10 +11,12 @@ import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import com.spring.author.domain.Authors;
 import com.spring.author.domain.BookReviews;
 import com.spring.author.domain.ChallengeUsers;
 import com.spring.author.domain.PrincipalDetails;
 import com.spring.author.domain.Users;
+import com.spring.author.repository.AuthorRepository;
 import com.spring.author.repository.BookReviewRepository;
 import com.spring.author.repository.UserRepository;
 
@@ -26,6 +28,12 @@ public class UserDetailService implements UserDetailsService {
 	
 	@Autowired
 	private final UserRepository userRepository;
+	
+	@Autowired
+	private final AuthorRepository authorRepository;
+	
+	@Autowired
+	private final AuthorService authorService;
 
 	@Override
 	public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
@@ -47,12 +55,23 @@ public class UserDetailService implements UserDetailsService {
 	}
 	
 	// 사용자의 챌린지 개수 조회
-		public Long getChallengeCnt(String email) {
-		    Users user = userRepository.findByEmail(email).orElse(null);
-		    if (user != null) {	
-		    	return userRepository.countChallengeUsersByChallengeUsersUser(user);
-		    }
-		    return 0L;
-		}
+	public Long getChallengeCnt(String email) {
+	    Users user = userRepository.findByEmail(email).orElse(null);
+	    if (user != null) {	
+	    	return userRepository.countChallengeUsersByChallengeUsersUser(user);
+	    }
+	    return 0L;
+	}
+	
+	public void changeUserRoleToAuthor(String email) {
+		
+        Users user = userRepository.findByEmail(email).orElse(null);
+        if (user != null) {
+            user.setRole("AUTHOR");
+            userRepository.save(user);
+            
+            authorService.createAuthorsEntity(user.getName(), user.getEmail());
+        }
+    }
 
 }

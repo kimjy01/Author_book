@@ -20,9 +20,6 @@ public class Subscriptions {
     @Column(name = "id", updatable = false)
     private Long id;
 
-    @Column(name = "is_subscribe")
-    private boolean is_subscribe;
-
     @ManyToOne
     @JoinColumn(name = "user_id")
     private Users user;
