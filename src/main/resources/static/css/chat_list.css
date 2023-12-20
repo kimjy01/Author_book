@@ -84,7 +84,7 @@ p {
     font-size: 12px;
 }
 
-.message_cnt, .sub_btn {
+.message_cnt, .sub_btn, .unsub_btn {
     margin-left: 6%;
     background-color: #badac7;
     text-align: center;
@@ -100,6 +100,14 @@ p {
 
 .sub_btn {
     width: 60px;
+    cursor: pointer;
+    border-radius: 25%;
+    height: 30px;
+    line-height: 30px;
+}
+
+.unsub_btn {
+    width: 100px;
     cursor: pointer;
     border-radius: 25%;
     height: 30px;

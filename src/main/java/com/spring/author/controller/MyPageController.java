@@ -55,7 +55,6 @@ public class MyPageController {
 		Users user = principalDetails.getUsers();
 		
 		Long bookReviewCnt = userService.getBookCnt(user.getEmail());
-		Long challengeCnt = userService.getChallengeCnt(user.getEmail());
 		
 		if (user.getRole().equals("AUTHOR")) {
 			Authors author = authorService.authorView(user.getEmail());
@@ -66,7 +65,6 @@ public class MyPageController {
 		}
 		
 		model.addAttribute("bookCnt", bookReviewCnt);
-		model.addAttribute("challengeCnt", challengeCnt);
 		model.addAttribute("user", user);
 		
 		return "mypage";

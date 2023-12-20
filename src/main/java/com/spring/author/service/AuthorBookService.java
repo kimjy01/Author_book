@@ -1,24 +1,15 @@
 package com.spring.author.service;
 
 import java.util.List;
-import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
-import com.spring.author.domain.Users;
 import com.spring.author.domain.AuthorBooks;
 import com.spring.author.domain.Authors;
-import com.spring.author.domain.BookReviews;
-import com.spring.author.domain.ChallengeUsers;
 import com.spring.author.dto.AddAuthorBookRequest;
-import com.spring.author.dto.AddBookRequest;
-import com.spring.author.dto.AddUserRequest;
 import com.spring.author.repository.AuthorBookRepository;
 import com.spring.author.repository.AuthorRepository;
-import com.spring.author.repository.BookReviewRepository;
-import com.spring.author.repository.UserRepository;
 
 import jakarta.persistence.EntityNotFoundException;
 import lombok.RequiredArgsConstructor;

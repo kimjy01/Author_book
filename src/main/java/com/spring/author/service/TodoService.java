@@ -2,21 +2,13 @@ package com.spring.author.service;
 
 import java.time.LocalDate;
 import java.util.List;
-import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import com.spring.author.domain.Users;
-import com.spring.author.domain.BookReviews;
-import com.spring.author.domain.ChallengeUsers;
 import com.spring.author.domain.Todo;
-import com.spring.author.dto.AddBookRequest;
 import com.spring.author.dto.AddTodoRequest;
-import com.spring.author.dto.AddUserRequest;
-import com.spring.author.repository.AuthorBookRepository;
-import com.spring.author.repository.BookReviewRepository;
 import com.spring.author.repository.TodoRepository;
 import com.spring.author.repository.UserRepository;
 

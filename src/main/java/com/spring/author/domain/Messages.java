@@ -7,33 +7,41 @@ import org.springframework.data.annotation.CreatedDate;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
+import lombok.Data;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 
 @Entity
 @Builder
-@Getter
+@Data
 @NoArgsConstructor
 @AllArgsConstructor
 public class Messages {
+	
+	public enum MessageType{
+		ENTER, TALK, LEAVE;
+	}
 
 	@Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name = "id", updatable = false)
     private Long id;
+	
+	@Column(name = "type")
+	private MessageType type;
+	
+	@ManyToOne
+    @JoinColumn(name = "senderId")
+    private Users sender;
 
-	@Column(name = "content")
-    private String content;
+    @Column(name = "message")
+    private String message;
 	
 	@CreatedDate
-	@Column(name = "send_time")
-    private LocalDateTime send_time;
-
-    @ManyToOne
-    @JoinColumn(name = "chat_room_user_id")
-    private ChatRoomUsers chat_room_user;
+	@Column(name = "sendTime")
+    private LocalDateTime sendTime;
     
     @ManyToOne
-    @JoinColumn(name = "chat_room_id")
+    @JoinColumn(name = "chatRoomId")
     private ChatRooms chatRoom;
 }

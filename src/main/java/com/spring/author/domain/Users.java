@@ -9,7 +9,6 @@ import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
-import lombok.Getter;
 import lombok.NoArgsConstructor;
 
 @Entity
@@ -32,9 +31,6 @@ public class Users {
 
     @Column(name = "name")
     private String name;
-    
-    @Column(name = "nickname")
-    private String nickname;
 
     @Column(name = "rate")
     @ColumnDefault("1")
@@ -60,15 +56,5 @@ public class Users {
 
     @OneToMany(mappedBy = "user", cascade = CascadeType.ALL, orphanRemoval = true)
     private List<Subscriptions> subscriptions = new ArrayList<>();
-
-    @OneToMany(mappedBy = "user", cascade = CascadeType.ALL, orphanRemoval = true)
-    private List<ChallengeUsers> userChallenges = new ArrayList<>();
-
-    @ManyToOne
-    @JoinColumn(name = "challenge_id")
-    private Challenges challenge;
-
-    @OneToMany(mappedBy = "user", cascade = CascadeType.ALL, orphanRemoval = true)
-    private List<ChallengeUsers> challengeUsers = new ArrayList<>();
     
 }

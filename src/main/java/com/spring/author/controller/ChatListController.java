@@ -24,12 +24,14 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import com.spring.author.domain.PrincipalDetails;
 import com.spring.author.domain.Users;
 import com.spring.author.dto.AddInfoRequest;
+import com.spring.author.repository.SubscriptionRepository;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.spring.author.domain.AuthorBooks;
 import com.spring.author.domain.Authors;
 import com.spring.author.service.AuthorBookService;
 import com.spring.author.service.AuthorService;
+import com.spring.author.service.SubscriptionService;
 import com.spring.author.service.UserDetailService;
 import com.spring.author.service.UserService;
 
@@ -39,7 +41,7 @@ import lombok.RequiredArgsConstructor;
 
 @RequiredArgsConstructor
 @Controller
-public class ChatController {
+public class ChatListController {
 	
 	@Autowired
 	private UserDetailService userService;
@@ -49,6 +51,9 @@ public class ChatController {
 	
 	@Autowired
 	private final AuthorBookService authorBookService;
+	
+	@Autowired
+	private final SubscriptionService subscriptionService;
 	
 	@GetMapping("/chatList")
 	public String chatList(@AuthenticationPrincipal PrincipalDetails principalDetails, Model model) {
@@ -68,5 +73,17 @@ public class ChatController {
 		
 		return "chat_list";
 	}
+	
+	@PostMapping("/subscribe")
+    public String subscribeToAuthor(@RequestParam Long userId, @RequestParam Long authorId) {
+        subscriptionService.subscribeToAuthor(userId, authorId);
+        return "redirect:/";
+    }
+
+    @PostMapping("/unsubscribe")
+    public String unsubscribeFromAuthor(@RequestParam Long userId, @RequestParam Long authorId) {
+        subscriptionService.unsubscribeFromAuthor(userId, authorId);
+        return "redirect:/";
+    }
 	
 }

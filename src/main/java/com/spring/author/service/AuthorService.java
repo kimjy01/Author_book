@@ -2,28 +2,17 @@ package com.spring.author.service;
 
 import java.util.Collections;
 import java.util.List;
-import java.util.Optional;
 import java.util.stream.Collectors;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.core.annotation.AuthenticationPrincipal;
-import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+import org.springframework.security.access.prepost.PostAuthorize;
 import org.springframework.stereotype.Service;
 
 import com.spring.author.domain.Users;
-import com.spring.author.domain.AuthorBooks;
 import com.spring.author.domain.Authors;
-import com.spring.author.domain.BookReviews;
-import com.spring.author.domain.ChallengeUsers;
-import com.spring.author.domain.Rate;
 import com.spring.author.domain.Subscriptions;
-import com.spring.author.dto.AddBookRequest;
 import com.spring.author.dto.AddInfoRequest;
-import com.spring.author.dto.AddUserRequest;
-import com.spring.author.repository.AuthorBookRepository;
 import com.spring.author.repository.AuthorRepository;
-import com.spring.author.repository.BookReviewRepository;
-import com.spring.author.repository.RateRepository;
 import com.spring.author.repository.SubscriptionRepository;
 import com.spring.author.repository.UserRepository;
 
@@ -41,9 +30,18 @@ public class AuthorService {
     private SubscriptionRepository subscriptionRepository;
 	
 	@Autowired
-	private final AuthorBookRepository authorBookRepository;
+	private final ChatRoomService chatRoomService;
+	
+	@Autowired
+	private final UserRepository userRepository;
+	
+	@Autowired
+	private final SubscriptionService subscriptionService;
 	
 	public void createAuthorsEntity(String authorName, String email) {
+		
+		Users user = userRepository.findByEmail(email).orElse(null);
+		
         Authors author = Authors.builder()
                 .author_name(authorName)
                 .authorEmail(email)
@@ -51,6 +49,8 @@ public class AuthorService {
 
         // Authors 엔티티를 저장
         authorRepository.save(author);
+        chatRoomService.createChatRoom(email);
+        subscriptionService.subscribeToAuthor(user.getId(), author.getId());
     }
 	
 	public Authors authorView(String email) {

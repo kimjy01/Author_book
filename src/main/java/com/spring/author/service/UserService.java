@@ -1,12 +1,9 @@
 package com.spring.author.service;
 
-import java.util.List;
-
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import com.spring.author.domain.Users;
-import com.spring.author.domain.ChallengeUsers;
 import com.spring.author.dto.AddUserRequest;
 import com.spring.author.repository.UserRepository;
 

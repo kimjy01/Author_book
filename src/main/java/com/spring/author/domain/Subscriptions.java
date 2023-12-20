@@ -5,12 +5,13 @@ import java.util.List;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
+import lombok.Data;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 
 @Entity
 @Builder
-@Getter
+@Data
 @NoArgsConstructor
 @AllArgsConstructor
 public class Subscriptions {
@@ -27,9 +28,5 @@ public class Subscriptions {
     @ManyToOne
     @JoinColumn(name = "author_id")
     private Authors author;
-
-    @ManyToOne
-    @JoinColumn(name = "challenge_user_id")
-    private ChallengeUsers challengeUser;
 
 }

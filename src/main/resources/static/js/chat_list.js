@@ -59,3 +59,33 @@ $(document).ready(function () {
 	}
 
 });
+
+function subscribeToAuthor(userId, authorId) {
+    // AJAX request using jQuery
+    $.ajax({
+        type: "POST",
+        url: "subscribe",
+        data: { userId: userId, authorId: authorId },
+        success: function () {
+            location.reload(true);
+        },
+        error: function () {
+            alert("Subscription failed!");
+        }
+    });
+}
+
+function unsubscribeFromAuthor(userId, authorId) {
+    // AJAX request using jQuery
+    $.ajax({
+        type: "POST",
+        url: "unsubscribe",
+        data: { userId: userId, authorId: authorId },
+        success: function () {
+            location.reload(true);
+        },
+        error: function () {
+            alert("Unsubscription failed!");
+        }
+    });
+}
